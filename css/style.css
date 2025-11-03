@@ -45,7 +45,7 @@ p {
 }
 
 a {
-	color: #285DA2;
+	color: orangered;
 	font-weight: 600;
 	text-decoration: none !important;
 	outline: none !important;
@@ -65,12 +65,12 @@ a.black-blue {
 }
 
 a#blue-black {
-	color: #285DA2;
+	color: orangered;
 	font-size: 25px;
 }
 
 a.black-blue:hover {
-	color: #285DA2;
+	color: orangered;
 }
 
 a#blue-black:hover {
@@ -355,7 +355,7 @@ button:focus {
 
 .first-nav_contact {
 	overflow: visible;
-	background-color: #285DA2;
+	background-color: orangered;
 	height: 42px;
 }
 
