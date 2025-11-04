@@ -430,7 +430,7 @@ span.first-nav_contact-icon img:hover {
 }
 
 .top-header .navbar {
-	padding:  5px 0px;
+    padding: 2px 0px; /* reduced padding */
 }
 
 .top-header {
@@ -438,32 +438,37 @@ span.first-nav_contact-icon img:hover {
     top: 0px;
     left: 0px;
     z-index: 20;
-    background-position: left;
-    background-repeat: no-repeat;
     background-color: #FFF;
-    background-size: auto 100%;
     width: 100%;
-    margin: 0% 0%;
+    margin: 0;
+    background-size: 100%;
 }
 
 .top-header .navbar .navbar-collapse ul li a {
-	text-transform: uppercase;
-	font-family: 'Montserrat', sans-serif;
-	letter-spacing: 0.5px;
-	font-size: 18px;
-	margin: auto;
-	left: 175px;
-	padding: 7px 15px;
-	position: relative;
-	font-weight: 400;
-	overflow: hidden;
-	color: #000;
-	transition: 0.2s;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: 0.5px;
+    font-size: 16px; /* slightly smaller text */
+    margin: auto;
+    padding: 4px 10px; /* reduced padding */
+    font-weight: 400;
+    color: #000;
+    transition: 0.3s;
 }
 
-.top-header .navbar .navbar-collapse ul li a:hover {
-	color: #285DA2;
-	transform: scale(1.07);
+.top-header .navbar .navbar-collapse ul li a:hover,
+.top-header .navbar .navbar-collapse ul li a.active {
+    color: #ff5a00;
+    transform: scale(1.05);
+}
+
+.top-header .navbar .navbar-collapse ul li a:focus {
+    color: #ff5a00;
+}
+
+/* reduce logo height */
+.top-header img {
+    max-height: 40px; /* adjust as needed */
 }
 
 a.navbar-brand {
@@ -472,7 +477,7 @@ a.navbar-brand {
 }
 
 a.navbar-brand img {
-	width: 250px;
+	width: 50px;
     height: auto;
 }
 
