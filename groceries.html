@@ -1,99 +1,277 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bhojan - Grocery Products</title>
-  <link rel="stylesheet" href="css/custom.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhojan - Grocery Products</title>
+    
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="img/logo/bhojan-favicon.png" type="image/x-icon" />
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css" />
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css" />
+    <!-- Product Cards CSS -->
+    <link rel="stylesheet" href="css/product-cards.css" />
 </head>
-<body>
+<body id="home" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
+    <!-- Start Header -->
+    <header class="top-header">
+        <nav class="first-nav_contact">
+            <div class="left">
+                <ul>
+                    <li><a href="mailto:Ask@vasave.uk"><span class="first-nav_contact-icon img" id="first"><img src="img/icons/email_sealed_icon_fill_white.png" alt="Bhojan Email"></span><span>Ask@bhojan.uk</span></a></li>
+                    <li><a href="tel:44 7721996484"><span class="first-nav_contact-icon follow"><img src="img/icons/landline_icon_fill_white.png" alt="Bhojan Phone Number"></span><span>+44 07721996484</span></a></li>
+                </ul>
+            </div>
+            <div class="right">
+                <ul>
+                    <li><a href="https://wa.me/4402034886800" target="_blank"><span class="first-nav_contact-icon"><img src="img/socials/whatsapp_icon_white.svg" alt="WhatsApp Order"></span></a></li>
+                    <li><a href="https://www.instagram.com/bhojanuk/" target="_blank"><span class="first-nav_contact-icon"><img src="img/socials/ig_icon_white.svg" alt="Bhojan Instagram"></span></a></li>
+                    <li><a href="https://www.facebook.com/bhojanuk/" target="_blank"><span class="first-nav_contact-icon"><img src="img/socials/fb_icon_white.svg" alt="Bhojan Facebook"></span></a></li>
+                </ul>
+            </div>
+        </nav>
+        <nav class="navbar header-nav navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/index.html"><img src="img/logo/bhojan-logo.png" alt="Bhojan Restaurant Logo"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd" aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
+                    <ul class="navbar-nav">
+                        <li><a class="nav-link" href="/index.html">Home</a></li>
+                        <li><a class="nav-link active" href="/groceries.html">Groceries</a></li>
+                        <li><a class="nav-link" href="/snacks.html">Snacks</a></li>
+                        <li><a class="nav-link" href="/about.html">About</a></li>
+                        <li><a class="nav-link" href="/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <!-- End Header -->
 
-  <header class="product-header">
-    <h2>Grocery Essentials</h2>
-    <p>Pick from our finest range of flours and salts.</p>
-  </header>
+    <!-- Start Product Header -->
+    <div class="page-heading">
+        <div class="container">
+            <h2>Grocery Essentials</h2>
+            <p>Pick from our finest range of flours, salts and other kitchen essentials</p>
+        </div>
+    </div>
+    <!-- End Product Header -->
 
-  <div class="product-grid">
+<div class="categories">
+    <div class="container">
+        <h2>Flour Collection</h2>
+        <div class="category-grid">
+            <div class="category-card">
+                <a href="#" class="category-link">
+                    <img src="img/categories/slider-11.png" alt="flour">
+                    <p>Lubella Baking Flour</p>
+                    <div class="product-meta">
+                        <p class="product-weight">1 kg</p>
+                        <p class="product-price">£45.00</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </a>
+            </div>
 
-    <div class="product-card">
-      <img src="img/vegetables/tomato.png" alt="flour">
-      <h3>Lubella Baking Flour 1kg</h3>
-      <p class="price">₹45.00</p>
-      <button class="add-cart">Add to cart</button>
+            <div class="category-card">
+                <a href="#" class="category-link">
+                    <img src="img/categories/slider-12.png" alt="flour">
+                    <p>Freee Gluten Free White Flour</p>
+                    <div class="product-meta">
+                        <p class="product-weight">1 kg</p>
+                        <p class="product-price">£2.35</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </a>
+            </div>
+
+            <div class="category-card">
+                <a href="#" class="category-link">
+                    <img src="img/categories/slider-13.png" alt="flour">
+                    <p>Allinsons Plain Flour</p>
+                    <div class="product-meta">
+                        <p class="product-weight">1 kg</p>
+                        <p class="product-price">£1.65</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </a>
+            </div>
+
+            <div class="category-card">
+                <a href="#" class="category-link">
+                    <img src="img/categories/slider-14.png" alt="flour">
+                    <p>Morrisons Organic Plain Flour</p>
+                    <div class="product-meta">
+                        <p class="product-weight">1 kg</p>
+                        <p class="product-price">£2.00</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </a>
+            </div>
+
+            <div class="category-card">
+                <a href="#" class="category-link">
+                    <img src="img/categories/slider-15.png" alt="flour">
+                    <p>Doves Farm Self Raising Flour</p>
+                    <div class="product-meta">
+                        <p class="product-weight">1 kg</p>
+                        <p class="product-price">£3.00</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </a>
+            </div>
+
+            <div class="category-card">
+                <a href="#" class="category-link">
+                    <img src="img/categories/slider-16.png" alt="flour">
+                    <p>Doves Farm Organic Plain White Flour</p>
+                    <div class="product-meta">
+                        <p class="product-weight">1 kg</p>
+                        <p class="product-price">£2.75</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </a>
+            </div>
+
+            <div class="category-card">
+                <a href="#" class="category-link">
+                    <img src="img/categories/slider-21.png" alt="flour">
+                    <p>McDougalls Plain Flour</p>
+                    <div class="product-meta">
+                        <p class="product-weight">1.1 kg</p>
+                        <p class="product-price">£2.05</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
 
-    <div class="product-card">
-      <img src="img/vegetables/potato.png" alt="Potato">
-      <h3>Organic Potatoes (1kg)</h3>
-      <p class="price">₹1.58</p>
-      <button class="add-cart">Add to cart</button>
-    </div>
+    <div class="container">
+        <h2>Premium Salts</h2>
+        <div class="category-grid">
+            <div class="category-card">
+                <a href="#" class="category-link">
+                    <img src="img/categories/slider-20.png" alt="salt">
+                    <p>Maldon Sea Salt</p>
+                    <div class="product-meta">
+                        <p class="product-weight">250 g</p>
+                        <p class="product-price">£3.15</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </a>
+            </div>
 
-    <div class="product-card">
-      <img src="img/vegetables/spinach.png" alt="flour">
-      <h3>Freee Gluten Free White Flour 1kg</h3>
-      <p class="price">₹2.35</p>
-      <button class="add-cart">Add to cart</button>
-    </div>
+            <div class="category-card">
+                <a href="#" class="category-link">
+                    <img src="img/categories/slider-18.png" alt="salt">
+                    <p>Maldon Himalayan Pink Salt</p>
+                    <div class="product-meta">
+                        <p class="product-weight">250 g</p>
+                        <p class="product-price">£2.90</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </a>
+            </div>
 
-    <div class="product-card">
-      <img src="img/vegetables/carrot.png" alt="flour">
-      <h3>Allinsons Plain Flour 1kg</h3>
-      <p class="price">₹1.65</p>
-      <button class="add-cart">Add to cart</button>
+            <div class="category-card">
+                <a href="#" class="category-link">
+                    <img src="img/categories/slider-17.png" alt="salt">
+                    <p>Indus Himalayan Salt</p>
+                    <div class="product-meta">
+                        <p class="product-weight">400 g</p>
+                        <p class="product-price">£1.85</p>
+                        <button class="add-to-cart">Add to Cart</button>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
+</div>
 
-    <div class="product-card">
-      <img src="img/vegetables/carrot.png" alt="flour">
-      <h3>Morrisons Organic Plain Flour 1kg</h3>
-      <p class="price">₹2.00</p>
-      <button class="add-cart">Add to cart</button>
+<!-- Start Footer -->
+<footer class="footer-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                <div class="footer_blog">
+                    <div class="full margin-bottom_30">
+                        <a href="/index.html"><img class="logo" src="/img/logo/vbs_logo.png" alt="Shree Hari Markating LTD"/></a>
+                    </div>
+                </div>
+            </div>
+            <!-- Site Links | Footer -->
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                <div class="footer_blog footer_menu white_fonts">
+                    <h5>About</h5>
+                    <ul> 
+                        <li><a href="/about.html">About Bhojan</a></li>
+                        <li><a href="/services.html">Our Services</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- Quick Links | Footer -->
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                <div class="footer_blog footer_menu white_fonts">
+                    <h5>Services</h5>
+                    <ul>
+                        <li><a href="/services/home-delivery.html">Home Delivery</a></li>
+                        <li><a href="/services/online-order.html">Online Ordering</a></li>
+                        <li><a href="/services/fresh-supply.html">Fresh Supply Everyday</a></li>
+                    </ul>
+                </div>
+            </div>   
+            <!-- Contact Us | Footer -->
+            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
+                <div class="footer_blog full white_fonts">
+                    <h5>Contact</h5>
+                    <ul class="full footer_content">
+                        <li><img src="img/icons/address_icon.png" alt="Bhojan Address">4th Floor,Silverstream House,<br/> 45 Fitzroy Street,<br />London, England,<br />W1T 6E</li>
+                        <li><img src="img/icons/email_sealed_icon_fill.png" alt="Bhojan Email Address">Ask@bhojan.uk</li>
+                        <li><img src="img/icons/landline_icon_fill.png" alt="Bhojan Phone Number">+44 7721996484</li>
+                    </ul>
+                </div>
+            </div>	 
+        </div>
     </div>
+</footer>
+<!-- End Footer -->
 
-    <div class="product-card">
-      <img src="img/vegetables/carrot.png" alt="flour">
-      <h3>Doves Farm Self Raising White Flour 1kg</h3>
-      <p class="price">₹3.00</p>
-      <button class="add-cart">Add to cart</button>
+<!-- Start Copyright Content -->
+<div class="footer_bottom">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <span class="crp">© Copyrights 2025 by Shree Hari Markating LTD</span>
+                <span class="quick_links">
+                    <a href="/cookies-policy.pdf" target="_blank" rel="noopener">Cookies Policy</a>
+                    <a href="/privacy-policy.pdf" target="_blank" rel="noopener">Privacy Policy</a>
+                    <a href="/terms&conditions.pdf" target="_blank" rel="noopener">Terms & Conditions</a>
+                </span>
+            </div>
+        </div>
     </div>
+</div>
+<!-- End Copyright Content -->
 
-    <div class="product-card">
-      <img src="img/vegetables/carrot.png" alt="flour">
-      <h3>Doves Farm Organic Plain Flour 1kg</h3>
-      <p class="price">₹2.75</p>
-      <button class="add-cart">Add to cart</button>
-    </div>
-
-    <div class="product-card">
-      <img src="img/vegetables/carrot.png" alt="flour">
-      <h3>McDougalls Plain Flour 1.1kg</h3>
-      <p class="price">₹2.05</p>
-      <button class="add-cart">Add to cart</button>
-    </div>
-
-    <div class="product-card">
-      <img src="img/vegetables/carrot.png" alt="flour">
-      <h3>Maldon Sea Salt 250g</h3>
-      <p class="price">₹3.15</p>
-      <button class="add-cart">Add to cart</button>
-    </div>
-
-    <div class="product-card">
-      <img src="img/vegetables/carrot.png" alt="flour">
-      <h3>Maldon Himalayan Pink Salt 250g</h3>
-      <p class="price">₹2.90</p>
-      <button class="add-cart">Add to cart</button>
-    </div>
-
-    <div class="product-card">
-      <img src="img/vegetables/carrot.png" alt="flour">
-      <h3>Indus Himalayan Salt 400g</h3>
-      <p class="price">₹1.85</p>
-      <button class="add-cart">Add to cart</button>
-    </div>
-
-  </div>
+<!-- ALL JS FILES -->
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!-- ALL PLUGINS -->
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/custom.js"></script>
 
 </body>
 </html>
