@@ -954,14 +954,4 @@ body {
   white-space: normal;
   word-break: keep-all;
 }
-/* Fix logo scaling for Bhojan mobile view */
-@media (max-width: 767px) {
-  .top-header a.navbar-brand img,
-  a.navbar-brand img {
-      width: 140px !important;
-      height: auto !important;
-      max-width: 100% !important;
-      display: block !important;
-      margin: 0 auto !important;
-  }
-}
+
