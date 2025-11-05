@@ -954,25 +954,14 @@ body {
   word-break: keep-all;
 }
 
-/*---------------------------------------------
-    MOBILE RESPONSIVE ADJUSTMENTS
-----------------------------------------------*/
-
-@media (max-width: 768px) {
-    .top-header img {
-        max-height: 35px;
-        width: auto;
-    }
-    .bhojan-logo {
-        max-width: 120px;
-        height: auto;
-        margin: 0 auto;
-        display: block;
-    }
-    .slide_text h1 {
-        font-size: 28px;
-    }
-    .slide_text p {
-        font-size: 14px;
-    }
+/* Fix logo scaling for Bhojan mobile view */
+@media (max-width: 767px) {
+  .top-header a.navbar-brand img,
+  a.navbar-brand img {
+      width: 140px !important;
+      height: auto !important;
+      max-width: 100% !important;
+      display: block !important;
+      margin: 0 auto !important;
+  }
 }
