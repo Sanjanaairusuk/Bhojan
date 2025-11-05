@@ -953,8 +953,26 @@ body {
   white-space: normal;
   word-break: keep-all;
 }
-<style>
-  html {
-    scroll-behavior: smooth;
-  }
-</style>
+
+/*---------------------------------------------
+    MOBILE RESPONSIVE ADJUSTMENTS
+----------------------------------------------*/
+
+@media (max-width: 768px) {
+    .top-header img {
+        max-height: 35px;
+        width: auto;
+    }
+    .bhojan-logo {
+        max-width: 120px;
+        height: auto;
+        margin: 0 auto;
+        display: block;
+    }
+    .slide_text h1 {
+        font-size: 28px;
+    }
+    .slide_text p {
+        font-size: 14px;
+    }
+}
