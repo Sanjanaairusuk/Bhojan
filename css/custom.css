@@ -954,27 +954,5 @@ body {
   word-break: keep-all;
 }
 
-/* Fix Bhojan hero logo on mobile */
-@media (max-width: 767px) {
-  .bhojan-hero {
-    text-align: center !important;
-    padding: 40px 15px !important;
-  }
 
-  .bhojan-logo {
-    width: 130px !important;
-    height: auto !important;
-    display: block !important;
-    margin: 0 auto 15px auto !important;
-  }
-
-  .bhojan-title {
-    font-size: 28px !important;
-    margin-top: 10px !important;
-  }
-
-  .bhojan-subtitle {
-    font-size: 16px !important;
-  }
-}
 
