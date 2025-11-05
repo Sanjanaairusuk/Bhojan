@@ -980,4 +980,191 @@ body {
         font-size: 14px;
     }
 }
+/* ======== HERO SECTION FIX (Desktop + Mobile) ======== */
+
+.bhojan-hero {
+  background: linear-gradient(180deg, #fff7f1, #fff);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 120px 20px 100px;
+  flex-direction: column;
+}
+
+.bhojan-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.bhojan-logo {
+  width: 180px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.bhojan-title {
+  font-size: 70px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: #ff6b3d;
+  margin: 0;
+}
+
+.bhojan-subtitle {
+  font-size: 24px;
+  color: #333;
+  font-weight: 500;
+  margin: 10px 0 30px;
+}
+
+.bhojan-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.bhojan-buttons .btn {
+  padding: 12px 28px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn.primary {
+  background: #ff6b3d;
+  color: #fff;
+}
+
+.btn.secondary {
+  background: #fff;
+  border: 2px solid #ff6b3d;
+  color: #ff6b3d;
+}
+
+.btn.primary:hover,
+.btn.secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 107, 61, 0.25);
+}
+
+/* ======== CATEGORY BAR ======== */
+.category-bar {
+  background: #fff;
+  padding: 30px 10px;
+  border-top: 1px solid #eee;
+}
+
+.category-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  flex-wrap: wrap;
+}
+
+.category-item {
+  text-align: center;
+  text-decoration: none;
+  color: #222;
+  transition: transform 0.3s ease;
+}
+
+.category-item img {
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
+  margin-bottom: 8px;
+}
+
+.category-item span {
+  display: block;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.category-item:hover {
+  transform: translateY(-4px);
+}
+
+/* ======== RESPONSIVE DESIGN ======== */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .bhojan-hero {
+    padding: 90px 15px;
+  }
+  .bhojan-logo {
+    width: 150px;
+  }
+  .bhojan-title {
+    font-size: 55px;
+  }
+  .bhojan-subtitle {
+    font-size: 20px;
+  }
+  .bhojan-buttons .btn {
+    padding: 10px 24px;
+    font-size: 15px;
+  }
+  .category-item img {
+    width: 75px;
+    height: 75px;
+  }
+}
+
+/* Phones */
+@media (max-width: 768px) {
+  .bhojan-hero {
+    padding: 80px 15px;
+  }
+  .bhojan-logo {
+    width: 120px;
+    margin-bottom: 12px;
+  }
+  .bhojan-title {
+    font-size: 42px;
+  }
+  .bhojan-subtitle {
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+  .bhojan-buttons {
+    flex-direction: column;
+    gap: 10px;
+  }
+  .bhojan-buttons .btn {
+    width: 80%;
+    max-width: 260px;
+  }
+  .category-container {
+    gap: 15px;
+  }
+  .category-item img {
+    width: 65px;
+    height: 65px;
+  }
+  .category-item span {
+    font-size: 14px;
+  }
+}
+
+/* Small Phones */
+@media (max-width: 480px) {
+  .bhojan-logo {
+    width: 100px;
+  }
+  .bhojan-title {
+    font-size: 36px;
+  }
+  .bhojan-subtitle {
+    font-size: 14px;
+  }
+  .bhojan-buttons .btn {
+    font-size: 14px;
+    padding: 9px 20px;
+  }
+}
 
