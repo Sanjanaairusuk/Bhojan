@@ -1,349 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bhojan - Grocery Products</title>
-    <!DOCTYPE html>
-<html lang="en">
-<!-- Basic -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bhojan - Groceries</title>
 
-<head>
-    <!-- Start Google Tag Manager -->
-    <script>
-        (function (w, d, s, l, i) {
-            w[l] = w[l] || [];
-            w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
-            var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s),
-                dl = l != 'dataLayer' ? '&l=' + l : '';
-            j.async = true;
-            j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-            f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-WHWRDZ3');
-    </script>
-    <!-- End Google Tag Manager -->
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
 
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-L37592KQHX"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-L37592KQHX');
-    </script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff8f0;
+      margin: 0;
+      padding: 0;
+    }
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <a class="navbar-brand" href="index.html">
-</a>
- <!-- Mobile Metas -->
-    <meta name="viewport" content="width=device-width, initial-scale=0">
+    /* ---------- SECTION HEADINGS ---------- */
+    h2 {
+      color: #ff5a00;
+      font-weight: 700;
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      border-left: 5px solid #ff5a00;
+      padding-left: 10px;
+      margin: 40px 0 25px;
+    }
 
+    /* ---------- PRODUCT GRID ---------- */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
+      margin-bottom: 50px;
+    }
 
-    <!-- Site Metas -->
-    <title>Bhojan - Authentic Indian Food | Order by Call</title>
-    <meta name="description" content="Order delicious Indian cuisine from Bhojan. Call us to place your order for authentic dishes delivered to your doorstep.">
-    <meta name="keywords" content="Indian food, food delivery, Indian restaurant, takeaway, Bhojan">
-    <meta name="author" content="Shree Hari Marketing LTD">
-    
-    <!-- Site Icons -->
-    <link rel="shortcut icon" href="img/logo/slider-123.png" type="image/x-icon" />
+    /* ---------- PRODUCT CARD ---------- */
+    .category-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 4px 10px rgba(255, 90, 0, 0.12);
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <!-- Site CSS -->
-    <link rel="stylesheet" href="css/style.css" />
-    <!-- Responsive CSS -->
-    <link rel="stylesheet" href="css/responsive.css" />
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/custom.css" />
-    <!-- Product Cards CSS -->
-    <link rel="stylesheet" href="css/product-cards.css" />
+    .category-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 16px rgba(255, 90, 0, 0.2);
+    }
+
+    .category-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .category-card p {
+      margin: 6px 0;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .product-meta {
+      margin-top: auto;
+      text-align: center;
+    }
+
+    .product-weight {
+      color: #555;
+      font-size: 0.9rem;
+    }
+
+    .product-price {
+      color: #ff5a00;
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 5px 0 10px;
+    }
+
+    /* ---------- ADD TO CART BUTTON ---------- */
+    .add-to-cart {
+      background: linear-gradient(135deg, #ff7a00, #ff3c00);
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      width: 100%;
+      transition: 0.3s;
+      box-shadow: 0 3px 8px rgba(255, 90, 0, 0.25);
+    }
+
+    .add-to-cart:hover {
+      background: linear-gradient(135deg, #ff5a00, #e64100);
+      box-shadow: 0 4px 10px rgba(255, 90, 0, 0.35);
+    }
+
+    .category-card .product-meta button {
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 768px) {
+      h2 {
+        font-size: 1.4rem;
+      }
+      .category-card img {
+        height: 160px;
+      }
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
-<body id="home" data-spy="scroll" data-target="#navbar-wd" data-offset="98">
-    <!-- Start Header -->
-    <header class="top-header">
-        <nav class="first-nav_contact">
-            <div class="left">
-                <ul>
-                    <li><a href="mailto:Ask@vasave.uk"><span class="first-nav_contact-icon img" id="first"><img src="img/icons/email_sealed_icon_fill_white.png" alt="Bhojan Email"></span><span>Ask@bhojan.uk</span></a></li>
-                    <li><a href="tel:44 7721996484"><span class="first-nav_contact-icon follow"><img src="img/icons/landline_icon_fill_white.png" alt="Bhojan Phone Number"></span><span>+44 7721996484</span></a></li>
-                </ul>
-            </div>
-            <div class="right">
-                <ul>
-                    <li><a href="https://wa.me/44 7721996484" target="_blank"><span class="first-nav_contact-icon"><img src="img/socials/whatsapp_icon_white.svg" alt="WhatsApp Order"></span></a></li>
-                    <li><a href="https://www.instagram.com/bhojanuk/" target="_blank"><span class="first-nav_contact-icon"><img src="img/socials/ig_icon_white.svg" alt="Bhojan Instagram"></span></a></li>
-                    <li><a href="https://www.facebook.com/bhojanuk/" target="_blank"><span class="first-nav_contact-icon"><img src="img/socials/fb_icon_white.svg" alt="Bhojan Facebook"></span></a></li>
-                </ul>
-            </div>
-        </nav>
-        <nav class="navbar header-nav navbar-expand-lg">
-            <div class="container-fluid">
-               
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd" aria-controls="navbar-wd" aria-expanded="false" aria-label="Toggle navigation">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-                <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
-                    <ul class="navbar-nav">
-                        <li><a class="nav-link" href="index.html">Home</a></li>
-                        <li><a class="nav-link active" href="groceries.html">Groceries</a></li>
-                        <li><a class="nav-link" href="snacks.html">Snacks</a></li>
-                        <li><a class="nav-link" href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <!-- End Header -->
 
-   
-<div class="categories">
-    <div class="container">
-        <h2>Flour Collection</h2>
-        <div class="category-grid">
-            <div class="category-card">
-                <a href="#" class="category-link">
-                    <img src="img/categories/slider-11.png" alt="flour">
-                    <p>Lubella Baking Flour</p>
-                    <div class="product-meta">
-                        <p class="product-weight">1 kg</p>
-                        <p class="product-price">£45.00</p>
-                        <button type="button" class="add-to-cart" data-id="lubella-baking-flour" data-name="Lubella Baking Flour" data-price="45.00" data-img="img/categories/slider-11.png">Add to Cart</button>
-                    </div>
-                </a>
-            </div>
-
-            <div class="category-card">
-                <a href="#" class="category-link">
-                    <img src="img/categories/slider-12.png" alt="flour">
-                    <p>Freee Gluten Free White Flour</p>
-                    <div class="product-meta">
-                        <p class="product-weight">1 kg</p>
-                        <p class="product-price">£2.35</p>
-                        <button type="button" class="add-to-cart" data-id="freee-gluten-free-white-flour" data-name="Freee Gluten Free White Flour" data-price="2.35" data-img="img/categories/slider-12.png">Add to Cart</button>
-                    </div>
-                </a>
-            </div>
-
-            <div class="category-card">
-                <a href="#" class="category-link">
-                    <img src="img/categories/slider-13.png" alt="flour">
-                    <p>Allinsons Plain Flour</p>
-                    <div class="product-meta">
-                        <p class="product-weight">1 kg</p>
-                        <p class="product-price">£1.65</p>
-                        <button type="button" class="add-to-cart" data-id="allinsons-plain-flour" data-name="Allinsons Plain Flour" data-price="1.65" data-img="img/categories/slider-13.png">Add to Cart</button>
-                    </div>
-                </a>
-            </div>
-
-            <div class="category-card">
-                <a href="#" class="category-link">
-                    <img src="img/categories/slider-14.png" alt="flour">
-                    <p>Morrisons Organic Plain Flour</p>
-                    <div class="product-meta">
-                        <p class="product-weight">1 kg</p>
-                        <p class="product-price">£2.00</p>
-                        <button type="button" class="add-to-cart" data-id="morrisons-organic-plain-flour" data-name="Morrisons Organic Plain Flour" data-price="2.00" data-img="img/categories/slider-14.png">Add to Cart</button>
-                    </div>
-                </a>
-            </div>
-
-            <div class="category-card">
-                <a href="#" class="category-link">
-                    <img src="img/categories/slider-15.png" alt="flour">
-                    <p>Doves Farm Self Raising Flour</p>
-                    <div class="product-meta">
-                        <p class="product-weight">1 kg</p>
-                        <p class="product-price">£3.00</p>
-                        <button type="button" class="add-to-cart" data-id="doves-farm-self-raising-flour" data-name="Doves Farm Self Raising Flour" data-price="3.00" data-img="img/categories/slider-15.png">Add to Cart</button>
-                    </div>
-                </a>
-            </div>
-
-            <div class="category-card">
-                <a href="#" class="category-link">
-                    <img src="img/categories/slider-16.png" alt="flour">
-                    <p>Doves Farm Organic Plain White Flour</p>
-                    <div class="product-meta">
-                        <p class="product-weight">1 kg</p>
-                        <p class="product-price">£2.75</p>
-                        <button type="button" class="add-to-cart" data-id="doves-farm-organic-plain-white-flour" data-name="Doves Farm Organic Plain White Flour" data-price="2.75" data-img="img/categories/slider-16.png">Add to Cart</button>
-                    </div>
-                </a>
-            </div>
-
-            <div class="category-card">
-                <a href="#" class="category-link">
-                    <img src="img/categories/slider-21.png" alt="flour">
-                    <p>McDougalls Plain Flour</p>
-                    <div class="product-meta">
-                        <p class="product-weight">1.1 kg</p>
-                        <p class="product-price">£2.05</p>
-                        <button type="button" class="add-to-cart" data-id="mcdougalls-plain-flour" data-name="McDougalls Plain Flour" data-price="2.05" data-img="img/categories/slider-21.png">Add to Cart</button>
-                    </div>
-                </a>
-            </div>
+<body>
+  <!-- HEADER START -->
+  <header class="top-header">
+    <nav class="first-nav_contact">
+      <div class="left">
+        <ul>
+          <li><a href="mailto:Ask@bhojan.uk"><span class="first-nav_contact-icon img"><img src="img/icons/email_sealed_icon_fill_white.png" alt="Bhojan Email"></span><span>Ask@bhojan.uk</span></a></li>
+          <li><a href="tel:44 7721996484"><span class="first-nav_contact-icon follow"><img src="img/icons/landline_icon_fill_white.png" alt="Bhojan Phone"></span><span>+44 07721996484</span></a></li>
+        </ul>
+      </div>
+      <div class="right">
+        <ul>
+          <li><a href="https://wa.me/4402034886800" target="_blank"><span class="first-nav_contact-icon"><img src="img/socials/whatsapp_icon_white.svg" alt="WhatsApp"></span></a></li>
+          <li><a href="https://www.instagram.com/bhojanuk/" target="_blank"><span class="first-nav_contact-icon"><img src="img/socials/ig_icon_white.svg" alt="Instagram"></span></a></li>
+          <li><a href="https://www.facebook.com/bhojanuk/" target="_blank"><span class="first-nav_contact-icon"><img src="img/socials/fb_icon_white.svg" alt="Facebook"></span></a></li>
+        </ul>
+      </div>
+    </nav>
+    <nav class="navbar header-nav navbar-expand-lg">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
+          <ul class="navbar-nav">
+            <li><a class="nav-link" href="index.html">Home</a></li>
+            <li><a class="nav-link active" href="groceries.html">Groceries</a></li>
+             <li><a class="nav-link" href="snacks.html">Snacks</a></li>
+             <li><a class="nav-link" href="cart.html">Cart</a></li>
+            <li><a class="nav-link" href="contact.html">Contact</a></li>
+          </ul>
         </div>
+      </div>
+    </nav>
+  </header>
+  <!-- HEADER END -->
+
+  <br><br>
+
+  <h2>Flour Collection</h2>
+<div class="category-grid">
+
+  <div class="category-card">
+    <img src="img/categories/slider-11.png" alt="Lubella Flour" />
+    <p>Lubella Baking Flour</p>
+    <div class="product-meta">
+      <p class="product-weight">1 kg</p>
+      <p class="product-price">£45.00</p>
+      <button class="add-to-cart" data-name="Lubella Baking Flour" data-price="45.00" data-img="img/categories/slider-11.png">Add to Cart</button>
     </div>
+  </div>
 
-    <div class="container">
-        <h2>Premium Salts and Sugar
-        </h2>
-        <div class="category-grid">
-            <div class="category-card">
-                <a href="#" class="category-link">
-                    <img src="img/categories/slider-20.png" alt="salt">
-                    <p>Maldon Sea Salt</p>
-                    <div class="product-meta">
-                        <p class="product-weight">250 g</p>
-                        <p class="product-price">£3.15</p>
-                        <button type="button" class="add-to-cart" data-id="maldon-sea-salt" data-name="Maldon Sea Salt" data-price="3.15" data-img="img/categories/slider-20.png">Add to Cart</button>
-                    </div>
-                </a>
-            </div>
-
-            <div class="category-card">
-                <a href="#" class="category-link">
-                    <img src="img/categories/slider-18.png" alt="salt">
-                    <p>Maldon Himalayan Pink Salt</p>
-                    <div class="product-meta">
-                        <p class="product-weight">250 g</p>
-                        <p class="product-price">£2.90</p>
-                        <button type="button" class="add-to-cart" data-id="maldon-himalayan-pink-salt" data-name="Maldon Himalayan Pink Salt" data-price="2.90" data-img="img/categories/slider-18.png">Add to Cart</button>
-                    </div>
-                </a>
-            </div>
-
-            <div class="category-card">
-                <a href="#" class="category-link">
-                    <img src="img/categories/slider-17.png" alt="salt">
-                    <p>Indus Himalayan Salt</p>
-                    <div class="product-meta">
-                        <p class="product-weight">400 g</p>
-                        <p class="product-price">£1.85</p>
-                        <button type="button" class="add-to-cart" data-id="indus-himalayan-salt" data-name="Indus Himalayan Salt" data-price="1.85" data-img="img/categories/slider-17.png">Add to Cart</button>
-                    </div>
-                </a>
-            </div><div class="category-card">
-                <a href="#" class="category-link">
-                    <img src="img/categories/slider-43.png" alt="salt">
-                    <p> Tate & Lyle Cane Icing Sugar</p>
-                    <div class="product-meta">
-                        <p class="product-weight">500 g</p>
-                        <p class="product-price">£2.00</p>
-                        <button type="button" class="add-to-cart" data-id="Tate & Lyle Cane Icing Sugar" data-name="Tate & Lyle Cane Icing Sugar" data-price="2.00" data-img="img/categories/slider-43.png">Add to Cart</button>
-                    </div>
-                </a>
-            </div>
-            <div class="category-card">
-                <a href="#" class="category-link">
-                    <img src="img/categories/slider-42.png" alt="salt">
-                    <p>TATE & LYLE F/T DEMERARA SUGAR</p>
-                    <div class="product-meta">
-                        <p class="product-weight">500 g</p>
-                        <p class="product-price">£2.40</p>
-                        <button type="button" class="add-to-cart" data-id="TATE & LYLE F/T DEMERARA SUGAR" data-name="TATE & LYLE F/T DEMERARA SUGAR" data-price="2.40" data-img="img/categories/slider-42.png">Add to Cart</button>
-                    </div>
-                </a>
-            </div>
-            <div class="category-card">
-                <a href="#" class="category-link">
-                    <img src="img/categories/slider-41.png" alt="salt">
-                    <p>Tate & Lyle Pure Cane Caster Sugar</p>
-                    <div class="product-meta">
-                        <p class="product-weight">1 kg</p>
-                        <p class="product-price">£2.95</p>
-                        <button type="button" class="add-to-cart" data-id="Tate & Lyle Pure Cane Caster Sugar" data-name="Tate & Lyle Pure Cane Caster Sugar" data-price="2.95" data-img="img/categories/slider-41.png">Add to Cart</button>
-                    </div>
-                </a>
-            </div>
-            
-
-        </div>
+  <div class="category-card">
+    <img src="img/categories/slider-12.png" alt="Freee Flour" />
+    <p>Freee Gluten Free White Flour</p>
+    <div class="product-meta">
+      <p class="product-weight">1 kg</p>
+      <p class="product-price">£2.35</p>
+      <button class="add-to-cart" data-name="Freee Gluten Free White Flour" data-price="2.35" data-img="img/categories/slider-12.png">Add to Cart</button>
     </div>
+  </div>
+
+  <div class="category-card">
+    <img src="img/categories/slider-13.png" alt="Allinsons" />
+    <p>Allinsons Plain Flour</p>
+    <div class="product-meta">
+      <p class="product-weight">1 kg</p>
+      <p class="product-price">£1.65</p>
+      <button class="add-to-cart" data-name="Allinsons Plain Flour" data-price="1.65" data-img="img/categories/slider-13.png">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Newly added flour products -->
+  <div class="category-card">
+    <img src="img/categories/slider-15.png" alt="flour">
+    <p>Doves Farm Self Raising Flour</p>
+    <div class="product-meta">
+      <p class="product-weight">1 kg</p>
+      <p class="product-price">£3.00</p>
+      <button type="button" class="add-to-cart" data-name="Doves Farm Self Raising Flour" data-price="3.00" data-img="img/categories/slider-15.png">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="category-card">
+    <img src="img/categories/slider-16.png" alt="flour">
+    <p>Doves Farm Organic Plain White Flour</p>
+    <div class="product-meta">
+      <p class="product-weight">1 kg</p>
+      <p class="product-price">£2.75</p>
+      <button type="button" class="add-to-cart" data-name="Doves Farm Organic Plain White Flour" data-price="2.75" data-img="img/categories/slider-16.png">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="category-card">
+    <img src="img/categories/slider-21.png" alt="flour">
+    <p>McDougalls Plain Flour</p>
+    <div class="product-meta">
+      <p class="product-weight">1.1 kg</p>
+      <p class="product-price">£2.05</p>
+      <button type="button" class="add-to-cart" data-name="McDougalls Plain Flour" data-price="2.05" data-img="img/categories/slider-21.png">Add to Cart</button>
+    </div>
+  </div>
+
 </div>
 
-<!-- Start Footer -->
-<footer class="footer-box">
-    <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                <div class="footer_blog">
-                    <div class="full margin-bottom_30">
-                        <a href="index.html"><img class="logo" src="img/logo/bhojan.png" alt="Shree Hari Markating LTD"/></a>
-                    </div>
-                </div>
-            </div>
-            <!-- Site Links | Footer -->
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                <div class="footer_blog footer_menu white_fonts">
-                     <h5>About Bhojan</h5>
-                     <p>
-            Bhojan is your trusted destination for  groceries, snacks, and essentials.
-            We focus on freshness, quality, and timely delivery.
-        </p>
-                </div>
-            </div>
-            <!-- Quick Links | Footer -->
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                <div class="footer_blog footer_menu white_fonts">
-                    <h5>Services</h5>
-                    <ul>
-                        <li><a href="services/home-delivery.html">Home Delivery</a></li>
-                        <li><a href="services/online-order.html">Online Ordering</a></li>
-                        <li><a href="services/fresh-supply.html">Fresh Supply Everyday</a></li>
-                    </ul>
-                </div>
-            </div>   
-            <!-- Contact Us | Footer -->
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-3">
-                <div class="footer_blog full white_fonts">
-                    <h5>Contact</h5>
-                     <ul class="full footer_content">
-                               <li><img src="img/icons/address_icon.png" alt="Bhojan Address" >4th Floor,Silverstream House,<br/> 45 Fitzroy Street,<br />London, England,<br />W1T 6EB</li>
-                                <li><img src="img/icons/email_sealed_icon_fill.png" alt="Bhojan Email Address">Ask@bhojan.uk</li>
-                                <li><img src="img/icons/landline_icon_fill.png" alt="Bhojan Phone Number">+44 7721996484</li>
-                            </ul>
-                </div>
-            </div>	 
-        </div>
-    </div>
-</footer>
-<!-- End Footer -->
 
-<!-- Start Copyright Content -->
-<div class="footer_bottom">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <span class="crp">© Copyrights 2025 by Shree Hari Markating LTD</span>
-                <span class="quick_links">
-                    <span class="quick_links">
-                          <a href="index.html">Cookies Policy</a>
-                          <a href="index.html">Privacy Policy</a>
-                         <a href="index.html">Terms & Conditions</a>
-                         </span>
+     <h2>Premium Salts and Sugar</h2>
+<div class="category-grid">
 
-                </span>
-            </div>
-        </div>
+  <div class="category-card">
+    <img src="img/categories/slider-20.png" alt="salt">
+    <p>Maldon Sea Salt</p>
+    <div class="product-meta">
+      <p class="product-weight">250 g</p>
+      <p class="product-price">£3.15</p>
+      <button type="button" class="add-to-cart" data-name="Maldon Sea Salt" data-price="3.15" data-img="img/categories/slider-20.png">Add to Cart</button>
     </div>
+  </div>
+
+  <div class="category-card">
+    <img src="img/categories/slider-18.png" alt="salt">
+    <p>Maldon Himalayan Pink Salt</p>
+    <div class="product-meta">
+      <p class="product-weight">250 g</p>
+      <p class="product-price">£2.90</p>
+      <button type="button" class="add-to-cart" data-name="Maldon Himalayan Pink Salt" data-price="2.90" data-img="img/categories/slider-18.png">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="category-card">
+    <img src="img/categories/slider-17.png" alt="salt">
+    <p>Indus Himalayan Salt</p>
+    <div class="product-meta">
+      <p class="product-weight">400 g</p>
+      <p class="product-price">£1.85</p>
+      <button type="button" class="add-to-cart" data-name="Indus Himalayan Salt" data-price="1.85" data-img="img/categories/slider-17.png">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Added sugar products -->
+  <div class="category-card">
+    <img src="img/categories/slider-43.png" alt="sugar">
+    <p>Tate & Lyle Cane Icing Sugar</p>
+    <div class="product-meta">
+      <p class="product-weight">500 g</p>
+      <p class="product-price">£2.00</p>
+      <button type="button" class="add-to-cart" data-name="Tate & Lyle Cane Icing Sugar" data-price="2.00" data-img="img/categories/slider-43.png">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="category-card">
+    <img src="img/categories/slider-42.png" alt="sugar">
+    <p>Tate & Lyle F/T Demerara Sugar</p>
+    <div class="product-meta">
+      <p class="product-weight">500 g</p>
+      <p class="product-price">£2.40</p>
+      <button type="button" class="add-to-cart" data-name="Tate & Lyle F/T Demerara Sugar" data-price="2.40" data-img="img/categories/slider-42.png">Add to Cart</button>
+    </div>
+  </div>
+
+  <div class="category-card">
+    <img src="img/categories/slider-41.png" alt="sugar">
+    <p>Tate & Lyle Pure Cane Caster Sugar</p>
+    <div class="product-meta">
+      <p class="product-weight">1 kg</p>
+      <p class="product-price">£2.95</p>
+      <button type="button" class="add-to-cart" data-name="Tate & Lyle Pure Cane Caster Sugar" data-price="2.95" data-img="img/categories/slider-41.png">Add to Cart</button>
+    </div>
+  </div>
 </div>
-<!-- End Copyright Content -->
 
-<!-- ALL JS FILES -->
-<script src="js/jquery.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<!-- ALL PLUGINS -->
-<script src="js/jquery.magnific-popup.min.js"></script>
-<script src="js/custom.js"></script>
-<script src="js/cart.js"></script>
 
+  <footer class="footer_bottom" style="background-color:#ff5a00; color:#fff; padding:14px 0; font-size:14px;">
+    <div class="container text-center">
+      © 2025 Shree Hari Marketing LTD | 
+      <a href="#">Cookies Policy</a> | 
+      <a href="#">Privacy Policy</a> | 
+      <a href="#">Terms</a>
+    </div>
+  </footer>
+
+  <script>
+    document.querySelectorAll(".add-to-cart").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const name = btn.dataset.name;
+        const price = parseFloat(btn.dataset.price);
+        const img = btn.dataset.img;
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const existing = cart.find(item => item.name === name);
+        if (existing) existing.quantity += 1;
+        else cart.push({ name, price, img, quantity: 1 });
+        localStorage.setItem("cart", JSON.stringify(cart));
+        
+        // window.location.href = "cart.html";
+      });
+    });
+  </script>
 </body>
 </html>
