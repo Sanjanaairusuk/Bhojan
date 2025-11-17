@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Product Details - Bhojan</title>
+  <meta name="viewport" content="width=device-width,initial-scale=0">
+  <style>
+    :root{ --accent:#ff5a00; --muted:#666; --bg:#fff8f0 }
+    *{box-sizing:border-box}
+    body{ font-family:'Poppins',sans-serif; margin:0; background:var(--bg); color:#222 }
+    .container{ max-width:1000px; margin:18px auto; padding:18px }
+
+    .back{ color:var(--accent); text-decoration:none; font-weight:700; display:inline-block; margin-bottom:12px }
+    .product-card{ display:flex; gap:26px; background:#fff; padding:22px; border-radius:14px; box-shadow:0 8px 26px rgba(0,0,0,0.06) }
+    .media{ width:420px; min-width:260px; display:flex; align-items:center; justify-content:center; background:#fff }
+    .media img{ width:100%; height:360px; object-fit:contain; border-radius:10px }
+    .info{ flex:1 }
+    .title{ font-size:26px; font-weight:800; margin-bottom:6px }
+    .meta{ color:var(--muted); margin-bottom:10px }
+    .price{ color:var(--accent); font-weight:900; font-size:26px; margin-bottom:12px }
+    .qtyrow{ display:flex; gap:10px; align-items:center; margin-bottom:12px }
+    .qtybtn{ width:36px; height:36px; border-radius:8px; border:1px solid #ddd; background:#fff; cursor:pointer; font-size:18px }
+    .addbtn{ background: linear-gradient(135deg,#ff7a00,var(--accent)); color:#fff; padding:12px 18px; border-radius:10px; border:none; cursor:pointer; font-weight:700 }
+    .section{ margin-top:18px }
+    .section h3{ margin:0 0 8px; font-size:18px }
+    .box{ background:#fafafa; padding:12px; border-radius:8px; color:#333; line-height:1.5 }
+
+    /* ⭐ SIMILAR PRODUCTS */
+    #similarProducts { margin-top:35px; }
+    #similarProducts h2 { font-size:22px; margin-bottom:14px; }
+    .similar-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+    .similar-card{
+      background:#fff;
+      border-radius:10px;
+      padding:14px;
+      text-align:center;
+      border:1px solid #eee;
+      transition:0.25s;
+      position:relative;
+    }
+    .similar-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 8px 24px rgba(0,0,0,0.08);
+    }
+    .similar-card img{
+      width:100%;
+      height:150px;
+      object-fit:contain;
+      margin-bottom:8px;
+      cursor:pointer;
+    }
+    .similar-name{ 
+      font-weight:600; 
+      font-size:14px; 
+      cursor:pointer;
+    }
+    .similar-weight{ color:#777; font-size:13px; }
+    .similar-price{ font-weight:700; color:var(--accent); margin-top:6px }
+
+    /* ⭐ ADD BUTTON IN SIMILAR CARD */
+    .similar-addbtn{
+      margin-top:10px;
+      background:linear-gradient(135deg,#ff7a00,var(--accent));
+      color:#fff;
+      border:none;
+      padding:8px 14px;
+      border-radius:8px;
+      cursor:pointer;
+      font-weight:600;
+      font-size:13px;
+      width:100%;
+      transition:0.25s;
+    }
+    .similar-addbtn.added{
+      background:#26c40f !important;
+      transform:scale(1.05);
+    }
+
+    /* ⭐ TOAST MESSAGE */
+    #toast {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      background:#222;
+      color:#fff;
+      padding:12px 20px;
+      border-radius:8px;
+      font-size:14px;
+      opacity:0;
+      transition:0.4s;
+      z-index:9999;
+    }
+    #toast.show {
+      opacity:1;
+      bottom:40px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header class="top-header">
+  </header>
+
+<div id="toast">Item added to cart</div>
+
+<div class="container">
+  <a class="back" href="groceries.html">&larr; Back to Groceries</a>
+
+  <div id="productArea"></div>
+
+  <div id="similarProducts">
+    <h2>Similar Products</h2>
+    <div class="similar-grid" id="similarGrid"></div>
+  </div>
+</div>
+
+<script>
+  /* ⭐ Product Data */
+  const allProducts = [
+    { name:"Lubella Baking Flour", img:"img/categories/slider-11.png", weight:"1 kg", price:"£45.00", category:"flour"},
+    { name:"Freee Gluten Free White Flour", img:"img/categories/slider-12.png", weight:"1 kg", price:"£2.35", category:"flour"},
+    { name:"Allinsons Plain Flour", img:"img/categories/slider-13.png", weight:"1 kg", price:"£1.65", category:"flour"},
+    { name:"Doves Farm Self Raising Flour", img:"img/categories/slider-15.png", weight:"1 kg", price:"£3.00", category:"flour"},
+    { name:"Doves Farm Organic Plain White Flour", img:"img/categories/slider-16.png", weight:"1 kg", price:"£2.75", category:"flour"},
+    { name:"McDougalls Plain Flour", img:"img/categories/slider-21.png", weight:"1.1 kg", price:"£2.05", category:"flour"},
+
+    { name:"Maldon Sea Salt", img:"img/categories/slider-20.png", weight:"250 g", price:"£3.15", category:"salt"},
+    { name:"Maldon Himalayan Pink Salt", img:"img/categories/slider-18.png", weight:"250 g", price:"£2.90", category:"salt"},
+    { name:"Indus Himalayan Salt", img:"img/categories/slider-17.png", weight:"400 g", price:"£1.85", category:"salt"},
+
+    { name:"Tate & Lyle Cane Icing Sugar", img:"img/categories/slider-43.png", weight:"500 g", price:"£2.00", category:"sugar"},
+    { name:"Tate & Lyle F/T Demerara Sugar", img:"img/categories/slider-42.png", weight:"500 g", price:"£2.40", category:"sugar"},
+    { name:"Tate & Lyle Pure Cane Caster Sugar", img:"img/categories/slider-41.png", weight:"1 kg", price:"£2.95", category:"sugar"}
+  ];
+
+  const dataRaw = localStorage.getItem("productDetails");
+  const product = dataRaw ? JSON.parse(dataRaw) : null;
+
+  if (!product) {
+    document.getElementById('productArea').innerHTML = '<p>Product not found. <a href="groceries.html">Return to products</a></p>';
+  } else {
+    renderProduct(product);
+    loadSimilar(product);
+  }
+
+  function renderProduct(p){
+    const safe = str => (str===undefined||str===null)?'':str;
+
+    const html =       `<div class="product-card">
+        <div class="media"><img src="${safe(p.img)}" alt="${safe(p.name)}"></div>
+        <div class="info">
+          <div class="title">${safe(p.name)}</div>
+          <div class="meta">${safe(p.weight)}</div>
+          <div class="price">${safe(p.price)}</div>
+
+          <div class="qtyrow">
+            <span style="font-weight:700">Quantity</span>
+            <button class="qtybtn" id="minusBtn">-</button>
+            <div id="qtyVal" style="min-width:36px;text-align:center">1</div>
+            <button class="qtybtn" id="plusBtn">+</button>
+          </div>
+
+          <button class="addbtn" id="addToCartBtn">Add to cart</button>
+
+          <div class="section">
+            <h3>Ingredients</h3>
+            <div class="box">${safe(p.ingredients)}</div>
+          </div>
+
+          <div class="section">
+            <h3>Allergens</h3>
+            <div class="box">${safe(p.allergens)}</div>
+          </div>
+
+          <div class="section">
+            <h3>Nutritional Information</h3>
+            <div class="box">${safe(p.nutrition)}</div>
+          </div>
+
+          <div class="section">
+            <h3>Seller & Delivery</h3>
+            <div class="box">Sold by: <strong>Shree Hari Marketing LTD</strong><br>
+              Delivery: Standard delivery
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    document.getElementById('productArea').innerHTML = html;
+
+    let qty = 1;
+    const qtyEl = document.getElementById('qtyVal');
+
+    document.getElementById('plusBtn').onclick = () => { qty++; qtyEl.innerText = qty; };
+    document.getElementById('minusBtn').onclick = () => { if(qty>1){ qty--; qtyEl.innerText = qty; }};
+
+    document.getElementById('addToCartBtn').onclick = () => addToCart(p, qty);
+  }
+
+  /* ⭐ Similar Products */
+  function loadSimilar(p){
+    const category = allProducts.find(i => i.name === p.name)?.category;
+    const list = allProducts.filter(i => i.category === category && i.name !== p.name);
+
+    document.getElementById("similarGrid").innerHTML = list.map(item =>       `<div class="similar-card">
+        <img src="${item.img}" onclick="openProduct('${item.name}')">
+        <div class="similar-name" onclick="openProduct('${item.name}')">${item.name}</div>
+        <div class="similar-weight">${item.weight}</div>
+        <div class="similar-price">${item.price}</div>
+
+        <button class="similar-addbtn" id="btn-${item.name.replace(/\s+/g,'')}"
+          onclick="addSimilarToCart('${item.name}', this)">
+          Add
+        </button>
+      </div>
+    `).join('');  }
+
+  /* ⭐ Price Extractor */
+  function priceNumber(priceStr){
+    const digits = priceStr.replace(/[^\d.]/g,'');
+    return digits ? parseFloat(digits) : 0;
+  }
+
+  /* ⭐ Add Main Product to Cart */
+  function addToCart(p, qty){
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existing = cart.find(i => i.name === p.name);
+
+    if(existing){ existing.quantity += qty; }
+    else{
+      cart.push({
+        name:p.name,
+        price:priceNumber(p.price),
+        img:p.img,
+        quantity:qty
+      });
+    }
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+    showToast();
+  }
+
+  /* ⭐ Add Similar Product */
+  function addSimilarToCart(name, btn){
+    btn.disabled = true; // Prevent double click
+
+    const p = allProducts.find(x => x.name === name);
+    if(!p) return;
+
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+    const existing = cart.find(i => i.name === p.name);
+
+    if(existing){ existing.quantity += 1; }
+    else{
+      cart.push({
+        name:p.name,
+        price:priceNumber(p.price),
+        img:p.img,
+        quantity:1
+      });
+    }
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    // Animation + Green Button
+    btn.classList.add("added");
+    btn.innerText = "Added ✓";
+
+    showToast();
+
+    setTimeout(()=>{
+      window.location.href = "cart.html";
+    }, 600); // nice smooth delay
+  }
+
+  /* ⭐ Toast Message */
+  function showToast(){
+    const toast = document.getElementById("toast");
+    toast.classList.add("show");
+
+    setTimeout(()=>{
+      toast.classList.remove("show");
+    }, 1500);
+  }
+
+  /* ⭐ Open Product */
+  function openProduct(name){
+    const p = allProducts.find(x => x.name === name);
+    localStorage.setItem("productDetails", JSON.stringify(p));
+    window.location.href = "product_details.html";
+  }
+</script>
+
+<footer class="footer-box">
+  </footer>
+
+</body>
+</html>
