@@ -47,6 +47,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      cursor: pointer;
     }
 
     .category-card:hover {
@@ -60,6 +61,7 @@
       object-fit: contain;
       border-radius: 10px;
       margin-bottom: 10px;
+      pointer-events: none; /* so clicks go to card, not the image */
     }
 
     .category-card p {
@@ -129,6 +131,7 @@
     footer a:hover {
       text-decoration: underline;
     }
+
   </style>
 </head>
 
@@ -174,7 +177,7 @@
   <h2>Flour Collection</h2>
 <div class="category-grid">
 
-  <div class="category-card">
+  <div class="category-card" data-key="lubella">
     <img src="img/categories/slider-11.png" alt="Lubella Flour" />
     <p>Lubella Baking Flour</p>
     <div class="product-meta">
@@ -184,7 +187,7 @@
     </div>
   </div>
 
-  <div class="category-card">
+  <div class="category-card" data-key="freee">
     <img src="img/categories/slider-12.png" alt="Freee Flour" />
     <p>Freee Gluten Free White Flour</p>
     <div class="product-meta">
@@ -194,7 +197,7 @@
     </div>
   </div>
 
-  <div class="category-card">
+  <div class="category-card" data-key="allinsons">
     <img src="img/categories/slider-13.png" alt="Allinsons" />
     <p>Allinsons Plain Flour</p>
     <div class="product-meta">
@@ -205,8 +208,8 @@
   </div>
 
   <!-- Newly added flour products -->
-  <div class="category-card">
-    <img src="img/categories/slider-15.png" alt="flour">
+  <div class="category-card" data-key="doves_self">
+    <img src="img/categories/slider-15.png" alt="Doves Self Raising">
     <p>Doves Farm Self Raising Flour</p>
     <div class="product-meta">
       <p class="product-weight">1 kg</p>
@@ -215,8 +218,8 @@
     </div>
   </div>
 
-  <div class="category-card">
-    <img src="img/categories/slider-16.png" alt="flour">
+  <div class="category-card" data-key="doves_organic">
+    <img src="img/categories/slider-16.png" alt="Doves Organic">
     <p>Doves Farm Organic Plain White Flour</p>
     <div class="product-meta">
       <p class="product-weight">1 kg</p>
@@ -225,8 +228,8 @@
     </div>
   </div>
 
-  <div class="category-card">
-    <img src="img/categories/slider-21.png" alt="flour">
+  <div class="category-card" data-key="mcdougalls">
+    <img src="img/categories/slider-21.png" alt="McDougalls">
     <p>McDougalls Plain Flour</p>
     <div class="product-meta">
       <p class="product-weight">1.1 kg</p>
@@ -241,8 +244,8 @@
      <h2>Premium Salts and Sugar</h2>
 <div class="category-grid">
 
-  <div class="category-card">
-    <img src="img/categories/slider-20.png" alt="salt">
+  <div class="category-card" data-key="maldon">
+    <img src="img/categories/slider-20.png" alt="Maldon">
     <p>Maldon Sea Salt</p>
     <div class="product-meta">
       <p class="product-weight">250 g</p>
@@ -251,8 +254,8 @@
     </div>
   </div>
 
-  <div class="category-card">
-    <img src="img/categories/slider-18.png" alt="salt">
+  <div class="category-card" data-key="maldon_pink">
+    <img src="img/categories/slider-18.png" alt="Maldon Pink">
     <p>Maldon Himalayan Pink Salt</p>
     <div class="product-meta">
       <p class="product-weight">250 g</p>
@@ -261,8 +264,8 @@
     </div>
   </div>
 
-  <div class="category-card">
-    <img src="img/categories/slider-17.png" alt="salt">
+  <div class="category-card" data-key="indus">
+    <img src="img/categories/slider-17.png" alt="Indus">
     <p>Indus Himalayan Salt</p>
     <div class="product-meta">
       <p class="product-weight">400 g</p>
@@ -272,8 +275,8 @@
   </div>
 
   <!-- Added sugar products -->
-  <div class="category-card">
-    <img src="img/categories/slider-43.png" alt="sugar">
+  <div class="category-card" data-key="tate_icing">
+    <img src="img/categories/slider-43.png" alt="Tate Icing">
     <p>Tate & Lyle Cane Icing Sugar</p>
     <div class="product-meta">
       <p class="product-weight">500 g</p>
@@ -282,8 +285,8 @@
     </div>
   </div>
 
-  <div class="category-card">
-    <img src="img/categories/slider-42.png" alt="sugar">
+  <div class="category-card" data-key="tate_demerara">
+    <img src="img/categories/slider-42.png" alt="Tate Demerara">
     <p>Tate & Lyle F/T Demerara Sugar</p>
     <div class="product-meta">
       <p class="product-weight">500 g</p>
@@ -292,8 +295,8 @@
     </div>
   </div>
 
-  <div class="category-card">
-    <img src="img/categories/slider-41.png" alt="sugar">
+  <div class="category-card" data-key="tate_caster">
+    <img src="img/categories/slider-41.png" alt="Tate Caster">
     <p>Tate & Lyle Pure Cane Caster Sugar</p>
     <div class="product-meta">
       <p class="product-weight">1 kg</p>
@@ -313,9 +316,92 @@
     </div>
   </footer>
 
+  <!-- SCRIPT: product data, card click and add-to-cart behavior -->
   <script>
+    /****************************************
+     * productExtraInfo
+     * Add or edit entries here for each product key.
+     ****************************************/
+    const productExtraInfo = {
+      "lubella": {
+        name: "Lubella Baking Flour",
+        ingredients: "Wheat Flour (100%).",
+        allergens: "Contains: Gluten (Wheat).",
+        nutrition: "Per 100g: Energy 364 kcal, Protein 10g, Carbohydrate 76g, Fat 1.5g."
+      },
+      "freee": {
+        name: "Freee Gluten Free White Flour",
+        ingredients: "Rice flour, Tapioca starch, Potato starch.",
+        allergens: "May contain traces of gluten from processing.",
+        nutrition: "Per 100g: Energy 360 kcal, Protein 6g, Carbohydrate 80g, Fat 1g."
+      },
+      "allinsons": {
+        name: "Allinsons Plain Flour",
+        ingredients: "Wheat Flour (Plain).",
+        allergens: "Contains: Gluten (Wheat).",
+        nutrition: "Per 100g: Energy 350 kcal, Protein 9g, Carbohydrate 75g, Fat 1.2g."
+      },
+      "doves_self": {
+        name: "Doves Farm Self Raising Flour",
+        ingredients: "Wheat Flour, Raising agents (E500, E450).",
+        allergens: "Contains: Gluten; May contain: Sesame.",
+        nutrition: "Per 100g: Energy 365 kcal, Protein 10g, Carbohydrate 75g, Fat 1.5g."
+      },
+      "doves_organic": {
+        name: "Doves Farm Organic Plain White Flour",
+        ingredients: "Organic Wheat Flour.",
+        allergens: "Contains: Gluten.",
+        nutrition: "Per 100g: Energy 360 kcal, Protein 9.8g, Carbohydrate 74g, Fat 1.4g."
+      },
+      "mcdougalls": {
+        name: "McDougalls Plain Flour",
+        ingredients: "Wheat Flour.",
+        allergens: "Contains: Gluten.",
+        nutrition: "Per 100g: Energy 355 kcal, Protein 9.5g, Carbohydrate 73g, Fat 1.1g."
+      },
+      "maldon": {
+        name: "Maldon Sea Salt",
+        ingredients: "Sea salt (100%).",
+        allergens: "No allergens.",
+        nutrition: "Per 100g: Sodium 38.3g (Note: salt is sodium chloride)."
+      },
+      "maldon_pink": {
+        name: "Maldon Himalayan Pink Salt",
+        ingredients: "Himalayan rock salt.",
+        allergens: "No allergens.",
+        nutrition: "Per 100g: Sodium 37.5g"
+      },
+      "indus": {
+        name: "Indus Himalayan Salt",
+        ingredients: "Himalayan salt (100%).",
+        allergens: "No allergens.",
+        nutrition: "Per 100g: Sodium 37.5g"
+      },
+      "tate_icing": {
+        name: "Tate & Lyle Cane Icing Sugar",
+        ingredients: "Cane sugar.",
+        allergens: "None declared.",
+        nutrition: "Per 100g: Energy 400 kcal, Carbohydrate 100g."
+      },
+      "tate_demerara": {
+        name: "Tate & Lyle F/T Demerara Sugar",
+        ingredients: "Demerara cane sugar.",
+        allergens: "None declared.",
+        nutrition: "Per 100g: Energy 400 kcal, Carbohydrate 100g."
+      },
+      "tate_caster": {
+        name: "Tate & Lyle Pure Cane Caster Sugar",
+        ingredients: "Pure cane sugar.",
+        allergens: "None declared.",
+        nutrition: "Per 100g: Energy 400 kcal, Carbohydrate 100g."
+      }
+    };
+
+    // Add-to-cart on product buttons inside cards:
     document.querySelectorAll(".add-to-cart").forEach(btn => {
-      btn.addEventListener("click", () => {
+      // stop card click when clicking add-to-cart
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation(); // IMPORTANT: prevent bubbling to card click
         const name = btn.dataset.name;
         const price = parseFloat(btn.dataset.price);
         const img = btn.dataset.img;
@@ -324,10 +410,52 @@
         if (existing) existing.quantity += 1;
         else cart.push({ name, price, img, quantity: 1 });
         localStorage.setItem("cart", JSON.stringify(cart));
-        
-        // window.location.href = "cart.html";
+        // Optional: show a small toast/alert
+        // Simple feedback:
+        const orig = btn.innerText;
+        btn.innerText = "Added";
+        setTimeout(()=> btn.innerText = orig, 900);
       });
     });
+
+    // Card click: open product-details.html with full product info saved to localStorage
+    document.querySelectorAll(".category-card").forEach(card => {
+      card.addEventListener("click", (e) => {
+        // If user clicked the add-to-cart button, we've already stopped propagation.
+        const key = card.dataset.key || null;
+        const imgEl = card.querySelector("img");
+        const priceEl = card.querySelector(".product-price");
+        const weightEl = card.querySelector(".product-weight");
+        const titleEl = card.querySelector("p");
+
+        // Build a base details object
+        const base = {
+          key: key,
+          name: titleEl ? titleEl.innerText.trim() : (productExtraInfo[key] ? productExtraInfo[key].name : ""),
+          img: imgEl ? imgEl.getAttribute("src") : "",
+          price: priceEl ? priceEl.innerText.trim() : "",
+          weight: weightEl ? weightEl.innerText.trim() : ""
+        };
+
+        // Merge with extra info if available
+        const extra = (key && productExtraInfo[key]) ? productExtraInfo[key] : {
+          ingredients: "Information not available",
+          allergens: "Information not available",
+          nutrition: "Information not available"
+        };
+
+        const productDetails = Object.assign({}, base, {
+          ingredients: extra.ingredients || "Information not available",
+          allergens: extra.allergens || "Information not available",
+          nutrition: extra.nutrition || "Information not available"
+        });
+
+        // Save to localStorage and navigate
+        localStorage.setItem("productDetails", JSON.stringify(productDetails));
+        window.location.href = "product-details.html";
+      });
+    });
+
   </script>
 </body>
 </html>
