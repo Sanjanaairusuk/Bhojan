@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=0" />
-  <title>Bhojan - Snacks & Drinks</title>
+  <meta name="viewport" content="width=device-width, initial-scale=0.0" />
+  <title>Bhojan - Groceries</title>
 
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/style.css" />
@@ -61,7 +61,7 @@
       object-fit: contain;
       border-radius: 10px;
       margin-bottom: 10px;
-      pointer-events: none;
+      pointer-events: none; /* so clicks go to card, not the image */
     }
 
     .category-card p {
@@ -108,6 +108,21 @@
       box-shadow: 0 4px 10px rgba(255, 90, 0, 0.35);
     }
 
+    .category-card .product-meta button {
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 768px) {
+      h2 {
+        font-size: 1.4rem;
+      }
+      .category-card img {
+        height: 160px;
+      }
+    }
+
     footer a {
       color: #fff;
       text-decoration: none;
@@ -117,47 +132,27 @@
       text-decoration: underline;
     }
 
-    /* Toast */
-    #toast {
-      position: fixed;
-      bottom: 25px;
-      left: 50%;
-      transform: translateX(-50%);
-      background:#222;
-      color:#fff;
-      padding:12px 20px;
-      border-radius:8px;
-      font-size:14px;
-      opacity:0;
-      transition:0.4s;
-      z-index:9999;
-    }
-    #toast.show {
-      opacity:1;
-      bottom:40px;
-    }
   </style>
 </head>
 
 <body>
-  <!-- HEADER -->
+  <!-- HEADER START -->
   <header class="top-header">
     <nav class="first-nav_contact">
       <div class="left">
         <ul>
-          <li><a href="mailto:Ask@bhojan.uk"><img src="img/icons/email_sealed_icon_fill_white.png" alt="Bhojan Email" style="width:16px; margin-right:5px;">Ask@bhojan.uk</a></li>
-          <li><a href="tel:+447721996484"><img src="img/icons/landline_icon_fill_white.png" alt="Bhojan Phone" style="width:16px; margin-right:5px;">+44 07721996484</a></li>
+          <li><a href="mailto:Ask@bhojan.uk"><span class="first-nav_contact-icon img"><img src="img/icons/email_sealed_icon_fill_white.png" alt="Bhojan Email"></span><span>Ask@bhojan.uk</span></a></li>
+          <li><a href="tel:44 7721996484"><span class="first-nav_contact-icon follow"><img src="img/icons/landline_icon_fill_white.png" alt="Bhojan Phone"></span><span>+44 07721996484</span></a></li>
         </ul>
       </div>
       <div class="right">
         <ul>
-          <li><a href="https://wa.me/4402034886800" target="_blank"><img src="img/socials/whatsapp_icon_white.svg" alt="WhatsApp" style="width:16px;"></a></li>
-          <li><a href="https://www.instagram.com/bhojanuk/" target="_blank"><img src="img/socials/ig_icon_white.svg" alt="Instagram" style="width:16px;"></a></li>
-          <li><a href="https://www.facebook.com/bhojanuk/" target="_blank"><img src="img/socials/fb_icon_white.svg" alt="Facebook" style="width:16px;"></a></li>
+          <li><a href="https://wa.me/4402034886800" target="_blank"><span class="first-nav_contact-icon"><img src="img/socials/whatsapp_icon_white.svg" alt="WhatsApp"></span></a></li>
+          <li><a href="https://www.instagram.com/bhojanuk/" target="_blank"><span class="first-nav_contact-icon"><img src="img/socials/ig_icon_white.svg" alt="Instagram"></span></a></li>
+          <li><a href="https://www.facebook.com/bhojanuk/" target="_blank"><span class="first-nav_contact-icon"><img src="img/socials/fb_icon_white.svg" alt="Facebook"></span></a></li>
         </ul>
       </div>
     </nav>
-
     <nav class="navbar header-nav navbar-expand-lg">
       <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd">
@@ -166,15 +161,16 @@
         <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
           <ul class="navbar-nav">
             <li><a class="nav-link" href="index.html">Home</a></li>
-            <li><a class="nav-link" href="groceries.html">Groceries</a></li>
-            <li><a class="nav-link active" href="snacks.html">Snacks</a></li>
-            <li><a class="nav-link" href="cart.html">Cart</a></li>
+            <li><a class="nav-link active" href="groceries.html">Groceries</a></li>
+             <li><a class="nav-link" href="snacks.html">Snacks</a></li>
+             <li><a class="nav-link" href="cart.html">Cart</a></li>
             <li><a class="nav-link" href="contact.html">Contact</a></li>
           </ul>
         </div>
       </div>
     </nav>
-  </header>
+  </header><br><br>
+  <!-- HEADER END -->
 
   <!-- TOAST -->
   <div id="toast">Item added to cart</div>
