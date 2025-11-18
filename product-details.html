@@ -4,30 +4,98 @@
   <meta charset="utf-8">
   <title>Product Details - Bhojan</title>
   <meta name="viewport" content="width=device-width,initial-scale=0">
+
   <style>
-    :root{ --accent:#ff5a00; --muted:#666; --bg:#fff8f0 }
-    *{box-sizing:border-box}
-    body{ font-family:'Poppins',sans-serif; margin:0; background:var(--bg); color:#222 }
-    .container{ max-width:1000px; margin:18px auto; padding:18px }
+    :root { --accent:#ff5a00; --muted:#666; --bg:#fff8f0; }
+    *{ box-sizing:border-box; }
 
-    .back{ color:var(--accent); text-decoration:none; font-weight:700; display:inline-block; margin-bottom:12px }
-    .product-card{ display:flex; gap:26px; background:#fff; padding:22px; border-radius:14px; box-shadow:0 8px 26px rgba(0,0,0,0.06) }
-    .media{ width:420px; min-width:260px; display:flex; align-items:center; justify-content:center; background:#fff }
-    .media img{ width:100%; height:360px; object-fit:contain; border-radius:10px }
-    .info{ flex:1 }
-    .title{ font-size:26px; font-weight:800; margin-bottom:6px }
-    .meta{ color:var(--muted); margin-bottom:10px }
-    .price{ color:var(--accent); font-weight:900; font-size:26px; margin-bottom:12px }
-    .qtyrow{ display:flex; gap:10px; align-items:center; margin-bottom:12px }
-    .qtybtn{ width:36px; height:36px; border-radius:8px; border:1px solid #ddd; background:#fff; cursor:pointer; font-size:18px }
-    .addbtn{ background: linear-gradient(135deg,#ff7a00,var(--accent)); color:#fff; padding:12px 18px; border-radius:10px; border:none; cursor:pointer; font-weight:700 }
-    .section{ margin-top:18px }
-    .section h3{ margin:0 0 8px; font-size:18px }
-    .box{ background:#fafafa; padding:12px; border-radius:8px; color:#333; line-height:1.5 }
+    body{
+      font-family:'Poppins',sans-serif;
+      margin:0;
+      background:var(--bg);
+      color:#222;
+    }
 
-    /* ⭐ SIMILAR PRODUCTS */
-    #similarProducts { margin-top:35px; }
-    #similarProducts h2 { font-size:22px; margin-bottom:14px; }
+    .container{
+      max-width:1000px;
+      margin:18px auto;
+      padding:18px;
+    }
+
+    .back{
+      color:var(--accent);
+      text-decoration:none;
+      font-weight:700;
+      display:inline-block;
+      margin-bottom:12px;
+    }
+
+    .product-card{
+      display:flex;
+      gap:26px;
+      background:#fff;
+      padding:22px;
+      border-radius:14px;
+      box-shadow:0 8px 26px rgba(0,0,0,0.06);
+    }
+
+    .media{
+      width:420px;
+      min-width:260px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:#fff;
+    }
+    .media img{
+      width:100%;
+      height:360px;
+      object-fit:contain;
+      border-radius:10px;
+    }
+
+    .info{ flex:1; }
+    .title{ font-size:26px; font-weight:800; margin-bottom:6px; }
+    .meta{ color:var(--muted); margin-bottom:10px; }
+    .price{ color:var(--accent); font-weight:900; font-size:26px; margin-bottom:12px; }
+
+    .qtyrow{ display:flex; gap:10px; align-items:center; margin-bottom:12px; }
+    .qtybtn{
+      width:36px;
+      height:36px;
+      border-radius:8px;
+      border:1px solid #ddd;
+      background:#fff;
+      cursor:pointer;
+      font-size:18px;
+    }
+
+    .addbtn{
+      background:linear-gradient(135deg,#ff7a00,var(--accent));
+      color:#fff;
+      padding:12px 18px;
+      border-radius:10px;
+      border:none;
+      cursor:pointer;
+      font-weight:700;
+      margin-bottom:20px;
+    }
+
+    .section{ margin-top:18px; }
+    .section h3{ margin:0 0 8px; font-size:18px; }
+    .box{
+      background:#fafafa;
+      padding:12px;
+      border-radius:8px;
+      color:#333;
+      line-height:1.5;
+      white-space:pre-wrap;
+      word-break:break-word;
+    }
+
+    /* SIMILAR PRODUCTS */
+    #similarProducts{ margin-top:35px; }
+    #similarProducts h2{ font-size:22px; margin-bottom:14px; }
     .similar-grid{
       display:grid;
       grid-template-columns:repeat(3,1fr);
@@ -40,7 +108,6 @@
       text-align:center;
       border:1px solid #eee;
       transition:0.25s;
-      position:relative;
     }
     .similar-card:hover{
       transform:translateY(-4px);
@@ -53,15 +120,10 @@
       margin-bottom:8px;
       cursor:pointer;
     }
-    .similar-name{ 
-      font-weight:600; 
-      font-size:14px; 
-      cursor:pointer;
-    }
+    .similar-name{ font-weight:600; font-size:14px; cursor:pointer; }
     .similar-weight{ color:#777; font-size:13px; }
-    .similar-price{ font-weight:700; color:var(--accent); margin-top:6px }
+    .similar-price{ font-weight:700; color:var(--accent); margin-top:6px; }
 
-    /* ⭐ ADD BUTTON IN SIMILAR CARD */
     .similar-addbtn{
       margin-top:10px;
       background:linear-gradient(135deg,#ff7a00,var(--accent));
@@ -80,12 +142,12 @@
       transform:scale(1.05);
     }
 
-    /* ⭐ TOAST MESSAGE */
-    #toast {
-      position: fixed;
-      bottom: 25px;
-      left: 50%;
-      transform: translateX(-50%);
+    /* TOAST */
+    #toast{
+      position:fixed;
+      bottom:25px;
+      left:50%;
+      transform:translateX(-50%);
       background:#222;
       color:#fff;
       padding:12px 20px;
@@ -95,209 +157,253 @@
       transition:0.4s;
       z-index:9999;
     }
-    #toast.show {
-      opacity:1;
-      bottom:40px;
-    }
+    #toast.show{ opacity:1; bottom:40px; }
   </style>
 </head>
 
 <body>
 
-<header class="top-header">
-  </header>
-
 <div id="toast">Item added to cart</div>
 
 <div class="container">
+
+  <!-- BACK BUTTON -->
   <a class="back" href="groceries.html">&larr; Back to Groceries</a>
 
+  <!-- PRODUCT DETAILS -->
   <div id="productArea"></div>
 
+  <!-- SIMILAR PRODUCTS -->
   <div id="similarProducts">
     <h2>Similar Products</h2>
     <div class="similar-grid" id="similarGrid"></div>
   </div>
 </div>
 
+
 <script>
-  /* ⭐ Product Data */
-  const allProducts = [
-    { name:"Lubella Baking Flour", img:"img/categories/slider-11.png", weight:"1 kg", price:"£45.00", category:"flour"},
-    { name:"Freee Gluten Free White Flour", img:"img/categories/slider-12.png", weight:"1 kg", price:"£2.35", category:"flour"},
-    { name:"Allinsons Plain Flour", img:"img/categories/slider-13.png", weight:"1 kg", price:"£1.65", category:"flour"},
-    { name:"Doves Farm Self Raising Flour", img:"img/categories/slider-15.png", weight:"1 kg", price:"£3.00", category:"flour"},
-    { name:"Doves Farm Organic Plain White Flour", img:"img/categories/slider-16.png", weight:"1 kg", price:"£2.75", category:"flour"},
-    { name:"McDougalls Plain Flour", img:"img/categories/slider-21.png", weight:"1.1 kg", price:"£2.05", category:"flour"},
+/* ⭐ ALL PRODUCT DATA (GROCERIES) */
+const allProducts = [
+  { name:"Lubella Baking Flour", img:"img/categories/slider-11.png", weight:"1 kg", price:"£45.00", category:"flour",
+    ingredients:"Wheat Flour.",
+    allergens:"Contains: Gluten.",
+    nutrition:"Per 100g: Energy 364 kcal, Carbs 76g, Protein 10g, Fat 1g."
+  },
 
-    { name:"Maldon Sea Salt", img:"img/categories/slider-20.png", weight:"250 g", price:"£3.15", category:"salt"},
-    { name:"Maldon Himalayan Pink Salt", img:"img/categories/slider-18.png", weight:"250 g", price:"£2.90", category:"salt"},
-    { name:"Indus Himalayan Salt", img:"img/categories/slider-17.png", weight:"400 g", price:"£1.85", category:"salt"},
+  { name:"Freee Gluten Free White Flour", img:"img/categories/slider-12.png", weight:"1 kg", price:"£2.35", category:"flour",
+    ingredients:"Rice flour, potato starch, tapioca flour.",
+    allergens:"Gluten Free.",
+    nutrition:"Per 100g: 350 kcal, Carbs 82g, Protein 5g, Fat 0.5g."
+  },
 
-    { name:"Tate & Lyle Cane Icing Sugar", img:"img/categories/slider-43.png", weight:"500 g", price:"£2.00", category:"sugar"},
-    { name:"Tate & Lyle F/T Demerara Sugar", img:"img/categories/slider-42.png", weight:"500 g", price:"£2.40", category:"sugar"},
-    { name:"Tate & Lyle Pure Cane Caster Sugar", img:"img/categories/slider-41.png", weight:"1 kg", price:"£2.95", category:"sugar"}
-  ];
+  { name:"Allinsons Plain Flour", img:"img/categories/slider-13.png", weight:"1 kg", price:"£1.65", category:"flour",
+    ingredients:"Wheat Flour (Calcium, Iron, Niacin, Thiamin).",
+    allergens:"Contains Gluten.",
+    nutrition:"Per 100g: Energy 340 kcal, Carbs 72g, Protein 10g, Fat 1.5g."
+  },
 
-  const dataRaw = localStorage.getItem("productDetails");
-  const product = dataRaw ? JSON.parse(dataRaw) : null;
+  { name:"Doves Farm Self Raising Flour", img:"img/categories/slider-15.png", weight:"1 kg", price:"£3.00", category:"flour",
+    ingredients:"Wheat Flour, Raising agents (E500, E450).",
+    allergens:"Contains Gluten.",
+    nutrition:"Per 100g: 365 kcal, Protein 10g, Carbs 75g, Fat 1.5g."
+  },
 
-  if (!product) {
-    document.getElementById('productArea').innerHTML = '<p>Product not found. <a href="groceries.html">Return to products</a></p>';
-  } else {
-    renderProduct(product);
-    loadSimilar(product);
+  { name:"Doves Farm Organic Plain White Flour", img:"img/categories/slider-16.png", weight:"1 kg", price:"£2.75", category:"flour",
+    ingredients:"Organic Wheat Flour.",
+    allergens:"Contains Gluten.",
+    nutrition:"Per 100g: 339 kcal, Protein 10g, Carbs 72g, Fat 1g."
+  },
+
+  { name:"McDougalls Plain Flour", img:"img/categories/slider-21.png", weight:"1.1 kg", price:"£2.05", category:"flour",
+    ingredients:"Wheat Flour.",
+    allergens:"Contains Gluten.",
+    nutrition:"Per 100g: 345 kcal, Carbs 73g, Protein 9.5g, Fat 1.2g."
+  },
+
+  { name:"Maldon Sea Salt", img:"img/categories/slider-20.png", weight:"250 g", price:"£3.15", category:"salt",
+    ingredients:"100% Sea Salt.",
+    allergens:"None.",
+    nutrition:"Salt: 100%."
+  },
+
+  { name:"Maldon Himalayan Pink Salt", img:"img/categories/slider-18.png", weight:"250 g", price:"£2.90", category:"salt",
+    ingredients:"Rock Salt.",
+    allergens:"None.",
+    nutrition:"Salt: 100%."
+  },
+
+  { name:"Indus Himalayan Salt", img:"img/categories/slider-17.png", weight:"400 g", price:"£1.85", category:"salt",
+    ingredients:"Rock Salt.",
+    allergens:"None.",
+    nutrition:"Salt: 100%."
+  },
+
+  { name:"Tate & Lyle Cane Icing Sugar", img:"img/categories/slider-43.png", weight:"500 g", price:"£2.00", category:"sugar",
+    ingredients:"Sugar, Anti-caking agent.",
+    allergens:"None.",
+    nutrition:"Per 100g: Energy 400 kcal."
+  },
+
+  { name:"Tate & Lyle F/T Demerara Sugar", img:"img/categories/slider-42.png", weight:"500 g", price:"£2.40", category:"sugar",
+    ingredients:"Unrefined cane sugar.",
+    allergens:"None.",
+    nutrition:"Per 100g: Energy 399 kcal."
+  },
+
+  { name:"Tate & Lyle Pure Cane Caster Sugar", img:"img/categories/slider-41.png", weight:"1 kg", price:"£2.95", category:"sugar",
+    ingredients:"Cane sugar.",
+    allergens:"None.",
+    nutrition:"Per 100g: Energy 400 kcal."
   }
+];
 
-  function renderProduct(p){
-    const safe = str => (str===undefined||str===null)?'':str;
+/* ⭐ Load Product */
+const dataRaw = localStorage.getItem("productDetails");
+const product = dataRaw ? JSON.parse(dataRaw) : null;
 
-    const html =       `<div class="product-card">
-        <div class="media"><img src="${safe(p.img)}" alt="${safe(p.name)}"></div>
-        <div class="info">
-          <div class="title">${safe(p.name)}</div>
-          <div class="meta">${safe(p.weight)}</div>
-          <div class="price">${safe(p.price)}</div>
+if (!product) {
+  document.getElementById('productArea').innerHTML =
+    '<p>Product not found. <a href="groceries.html">Return to products</a></p>';
+} else {
+  renderProduct(product);
+  loadSimilar(product);
+}
 
-          <div class="qtyrow">
-            <span style="font-weight:700">Quantity</span>
-            <button class="qtybtn" id="minusBtn">-</button>
-            <div id="qtyVal" style="min-width:36px;text-align:center">1</div>
-            <button class="qtybtn" id="plusBtn">+</button>
-          </div>
+/* ⭐ Render Product */
+function renderProduct(p){
+  const safe = txt => txt || '';
 
-          <button class="addbtn" id="addToCartBtn">Add to cart</button>
+  const html = `
+    <div class="product-card">
+      <div class="media">
+        <img src="${safe(p.img)}" alt="${safe(p.name)}">
+      </div>
 
-          <div class="section">
-            <h3>Ingredients</h3>
-            <div class="box">${safe(p.ingredients)}</div>
-          </div>
+      <div class="info">
 
-          <div class="section">
-            <h3>Allergens</h3>
-            <div class="box">${safe(p.allergens)}</div>
-          </div>
+        <div class="title">${safe(p.name)}</div>
+        <div class="meta">${safe(p.weight)}</div>
+        <div class="price">${safe(p.price)}</div>
 
-          <div class="section">
-            <h3>Nutritional Information</h3>
-            <div class="box">${safe(p.nutrition)}</div>
-          </div>
+        <div class="qtyrow">
+          <span style="font-weight:700">Quantity</span>
+          <button class="qtybtn" id="minusBtn">-</button>
+          <div id="qtyVal" style="min-width:36px;text-align:center">1</div>
+          <button class="qtybtn" id="plusBtn">+</button>
+        </div>
 
-          <div class="section">
-            <h3>Seller & Delivery</h3>
-            <div class="box">Sold by: <strong>Shree Hari Marketing LTD</strong><br>
-              Delivery: Standard delivery
-            </div>
+        <button class="addbtn" id="addToCartBtn">Add to cart</button>
+
+        <div class="section">
+          <h3>Ingredients</h3>
+          <div class="box">${safe(p.ingredients)}</div>
+        </div>
+
+        <div class="section">
+          <h3>Allergens</h3>
+          <div class="box">${safe(p.allergens)}</div>
+        </div>
+
+        <div class="section">
+          <h3>Nutritional Information</h3>
+          <div class="box">${safe(p.nutrition)}</div>
+        </div>
+
+        <div class="section">
+          <h3>Seller & Delivery</h3>
+          <div class="box">
+            Sold by: <strong>Shree Hari Marketing LTD</strong><br>
+            Delivery: Standard delivery
           </div>
         </div>
+
       </div>
-    `;
-    document.getElementById('productArea').innerHTML = html;
+    </div>
+  `;
 
-    let qty = 1;
-    const qtyEl = document.getElementById('qtyVal');
+  document.getElementById('productArea').innerHTML = html;
 
-    document.getElementById('plusBtn').onclick = () => { qty++; qtyEl.innerText = qty; };
-    document.getElementById('minusBtn').onclick = () => { if(qty>1){ qty--; qtyEl.innerText = qty; }};
+  let qty = 1;
+  const qtyEl = document.getElementById("qtyVal");
 
-    document.getElementById('addToCartBtn').onclick = () => addToCart(p, qty);
-  }
+  document.getElementById("plusBtn").onclick = () => { qty++; qtyEl.innerText = qty; };
+  document.getElementById("minusBtn").onclick = () => { if(qty>1){ qty--; qtyEl.innerText = qty; }};
 
-  /* ⭐ Similar Products */
-  function loadSimilar(p){
-    const category = allProducts.find(i => i.name === p.name)?.category;
-    const list = allProducts.filter(i => i.category === category && i.name !== p.name);
+  document.getElementById("addToCartBtn").onclick = () => addToCart(p, qty);
+}
 
-    document.getElementById("similarGrid").innerHTML = list.map(item =>       `<div class="similar-card">
-        <img src="${item.img}" onclick="openProduct('${item.name}')">
-        <div class="similar-name" onclick="openProduct('${item.name}')">${item.name}</div>
-        <div class="similar-weight">${item.weight}</div>
-        <div class="similar-price">${item.price}</div>
+/* ⭐ Similar Products */
+function loadSimilar(p){
+  const category = allProducts.find(i => i.name === p.name)?.category;
+  const list = allProducts.filter(i => i.category === category && i.name !== p.name);
 
-        <button class="similar-addbtn" id="btn-${item.name.replace(/\s+/g,'')}"
-          onclick="addSimilarToCart('${item.name}', this)">
-          Add
-        </button>
-      </div>
-    `).join('');  }
+  document.getElementById("similarGrid").innerHTML = list.map(item => `
+    <div class="similar-card">
+      <img src="${item.img}" onclick="openProduct('${item.name}')">
+      <div class="similar-name" onclick="openProduct('${item.name}')">${item.name}</div>
+      <div class="similar-weight">${item.weight}</div>
+      <div class="similar-price">${item.price}</div>
 
-  /* ⭐ Price Extractor */
-  function priceNumber(priceStr){
-    const digits = priceStr.replace(/[^\d.]/g,'');
-    return digits ? parseFloat(digits) : 0;
-  }
+      <button class="similar-addbtn" onclick="addSimilar('${item.name}', this)">Add</button>
+    </div>
+  `).join('');
+}
 
-  /* ⭐ Add Main Product to Cart */
-  function addToCart(p, qty){
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const existing = cart.find(i => i.name === p.name);
+/* ⭐ Add to Cart */
+function addToCart(p, qty){
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    if(existing){ existing.quantity += qty; }
-    else{
-      cart.push({
-        name:p.name,
-        price:priceNumber(p.price),
-        img:p.img,
-        quantity:qty
-      });
-    }
+  const existing = cart.find(i => i.name === p.name);
+  if (existing) existing.quantity += qty;
+  else cart.push({ name:p.name, price:priceNumber(p.price), img:p.img, quantity:qty });
 
-    localStorage.setItem('cart', JSON.stringify(cart));
-    showToast();
-  }
+  localStorage.setItem('cart', JSON.stringify(cart));
+  showToast();
+}
 
-  /* ⭐ Add Similar Product */
-  function addSimilarToCart(name, btn){
-    btn.disabled = true; // Prevent double click
+function priceNumber(str){
+  return parseFloat(str.replace(/[^\d.]/g,'')) || 0;
+}
 
-    const p = allProducts.find(x => x.name === name);
-    if(!p) return;
+/* ⭐ Add Similar Product */
+function addSimilar(name, btn){
+  btn.disabled = true;
 
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    const existing = cart.find(i => i.name === p.name);
+  const p = allProducts.find(x => x.name === name);
+  if (!p) return;
 
-    if(existing){ existing.quantity += 1; }
-    else{
-      cart.push({
-        name:p.name,
-        price:priceNumber(p.price),
-        img:p.img,
-        quantity:1
-      });
-    }
-    localStorage.setItem('cart', JSON.stringify(cart));
+  let cart = JSON.parse(localStorage.getItem('cart')) || [];
+  const exist = cart.find(i => i.name === p.name);
 
-    // Animation + Green Button
-    btn.classList.add("added");
-    btn.innerText = "Added ✓";
+  if (exist) exist.quantity += 1;
+  else cart.push({ name:p.name, price:priceNumber(p.price), img:p.img, quantity:1 });
 
-    showToast();
+  localStorage.setItem('cart', JSON.stringify(cart));
 
-    setTimeout(()=>{
-      window.location.href = "cart.html";
-    }, 600); // nice smooth delay
-  }
+  btn.classList.add("added");
+  btn.innerText = "Added ✓";
 
-  /* ⭐ Toast Message */
-  function showToast(){
-    const toast = document.getElementById("toast");
-    toast.classList.add("show");
+  showToast();
 
-    setTimeout(()=>{
-      toast.classList.remove("show");
-    }, 1500);
-  }
+  setTimeout(()=>{ window.location.href = "cart.html"; }, 600);
+}
 
-  /* ⭐ Open Product */
-  function openProduct(name){
-    const p = allProducts.find(x => x.name === name);
-    localStorage.setItem("productDetails", JSON.stringify(p));
-    window.location.href = "product_details.html";
-  }
+/* ⭐ Toast */
+function showToast(){
+  const t = document.getElementById("toast");
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 1500);
+}
+
+/* ⭐ Open Product — FIXED ✔ */
+function openProduct(name){
+  const p = allProducts.find(x => x.name === name);
+  if (!p) return;
+
+  localStorage.setItem("productDetails", JSON.stringify(p));
+  window.location.href = "product-details.html";  // ✔ Correct path
+}
 </script>
-
-<footer class="footer-box">
-  </footer>
 
 </body>
 </html>
