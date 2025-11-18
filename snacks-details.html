@@ -1,434 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Snack Details - Bhojan</title>
-  <meta name="viewport" content="width=device-width,initial-scale=0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.0" />
+  <title>Bhojan - Groceries</title>
+
+  <link rel="stylesheet" href="css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/style.css" />
 
   <style>
-    :root { --accent:#ff5a00; --muted:#666; --bg:#fff8f0; }
-    *{ box-sizing:border-box; }
-
-    body{
-      font-family:'Poppins',sans-serif;
-      margin:0;
-      background:var(--bg);
-      color:#222;
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #fff8f0;
+      margin: 0;
+      padding: 0;
     }
 
-    .container{
-      max-width:1000px;
-      margin:18px auto;
-      padding:18px;
+    /* ---------- SECTION HEADINGS ---------- */
+    h2 {
+      color: #ff5a00;
+      font-weight: 700;
+      font-size: 1.8rem;
+      text-transform: uppercase;
+      border-left: 5px solid #ff5a00;
+      padding-left: 10px;
+      margin: 40px 0 25px;
     }
 
-    .back{
-      color:var(--accent);
-      text-decoration:none;
-      font-weight:700;
-      display:inline-block;
-      margin-bottom:12px;
+    /* ---------- PRODUCT GRID ---------- */
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
+      margin-bottom: 50px;
     }
 
-    .product-card{
-      display:flex;
-      gap:26px;
-      background:#fff;
-      padding:22px;
-      border-radius:14px;
-      box-shadow:0 8px 26px rgba(0,0,0,0.06);
+    /* ---------- PRODUCT CARD ---------- */
+    .category-card {
+      background: #fff;
+      border-radius: 14px;
+      padding: 18px;
+      box-shadow: 0 4px 10px rgba(255, 90, 0, 0.12);
+      text-align: center;
+      transition: all 0.3s ease;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
     }
 
-    .media{
-      width:420px;
-      min-width:260px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-    }
-    .media img{
-      width:100%;
-      height:360px;
-      object-fit:contain;
-      border-radius:10px;
+    .category-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 6px 16px rgba(255, 90, 0, 0.2);
     }
 
-    .info{ flex:1; }
-    .title{ font-size:26px; font-weight:800; margin-bottom:6px; }
-    .meta{ color:var(--muted); margin-bottom:10px; }
-    .price{ color:var(--accent); font-weight:900; font-size:26px; margin-bottom:12px; }
-
-    .qtyrow{ display:flex; gap:10px; align-items:center; margin-bottom:12px; }
-    .qtybtn{
-      width:36px;
-      height:36px;
-      border-radius:8px;
-      border:1px solid #ddd;
-      background:#fff;
-      cursor:pointer;
-      font-size:18px;
+    .category-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: contain;
+      border-radius: 10px;
+      margin-bottom: 10px;
+      pointer-events: none; /* so clicks go to card, not the image */
     }
 
-    .addbtn{
-      background:linear-gradient(135deg,#ff7a00,var(--accent));
-      color:#fff;
-      padding:12px 18px;
-      border-radius:10px;
-      border:none;
-      cursor:pointer;
-      font-weight:700;
-      margin-bottom:20px;
+    .category-card p {
+      margin: 6px 0;
+      font-weight: 600;
+      color: #333;
     }
 
-    .section{ margin-top:18px; }
-    .section h3{ margin:0 0 8px; font-size:18px; font-weight:700; }
-    .box{
-      background:#fafafa;
-      padding:12px;
-      border-radius:8px;
-      color:#333;
-      line-height:1.5;
-      white-space:pre-wrap;
-      word-break:break-word;
+    .product-meta {
+      margin-top: auto;
+      text-align: center;
     }
 
-    /* SIMILAR PRODUCTS - MATCH BIG PRODUCT CARD STYLE */
-#similarProducts {
-  margin-top: 35px;
-}
-
-#similarProducts h2 {
-  font-size: 22px;
-  margin-bottom: 14px;
-}
-
-/* Make cards bigger like main product card */
-.similar-grid{
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
-}
-
-.similar-card{
-  background: #fff;
-  border-radius: 14px;
-  padding: 22px;
-  text-align: center;
-  border: none;
-  box-shadow: 0 8px 26px rgba(0,0,0,0.06);
-  transition: 0.25s;
-}
-
-.similar-card:hover{
-  transform: translateY(-4px);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.10);
-}
-
-.similar-card img{
-  width: 100%;
-  height: 200px;
-  object-fit: contain;
-  margin-bottom: 12px;
-  border-radius: 10px;
-}
-
-.similar-name{
-  font-weight: 700;
-  font-size: 16px;
-  margin-bottom: 4px;
-  cursor: pointer;
-}
-
-.similar-weight{
-  color: #777;
-  font-size: 14px;
-  margin-bottom: 6px;
-}
-
-.similar-price{
-  font-weight: 800;
-  font-size: 18px;
-  color: var(--accent);
-}
-
-.similar-addbtn{
-  margin-top: 14px;
-  background: linear-gradient(135deg,#ff7a00,var(--accent));
-  color: #fff;
-  border: none;
-  padding: 10px 18px;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: 600;
-  font-size: 14px;
-  width: 100%;
-  transition: 0.25s;
-}
-
-.similar-addbtn.added{
-  background:#26c40f !important;
-  transform:scale(1.05);
-}
-
-
-    #toast{
-      position:fixed;
-      bottom:25px;
-      left:50%;
-      transform:translateX(-50%);
-      background:#222;
-      color:#fff;
-      padding:12px 20px;
-      border-radius:8px;
-      font-size:14px;
-      opacity:0;
-      transition:0.4s;
-      z-index:9999;
+    .product-weight {
+      color: #555;
+      font-size: 0.9rem;
     }
-    #toast.show{ opacity:1; bottom:40px; }
+
+    .product-price {
+      color: #ff5a00;
+      font-size: 1rem;
+      font-weight: 700;
+      margin: 5px 0 10px;
+    }
+
+    /* ---------- ADD TO CART BUTTON ---------- */
+    .add-to-cart {
+      background: linear-gradient(135deg, #ff7a00, #ff3c00);
+      color: #fff;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      width: 100%;
+      transition: 0.3s;
+      box-shadow: 0 3px 8px rgba(255, 90, 0, 0.25);
+    }
+
+    .add-to-cart:hover {
+      background: linear-gradient(135deg, #ff5a00, #e64100);
+      box-shadow: 0 4px 10px rgba(255, 90, 0, 0.35);
+    }
+
+    .category-card .product-meta button {
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 768px) {
+      h2 {
+        font-size: 1.4rem;
+      }
+      .category-card img {
+        height: 160px;
+      }
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
   </style>
 </head>
 
 <body>
-
-<div id="toast">Item added to cart</div>
-
-<div class="container">
-  <a class="back" href="snacks.html">&larr; Back to Snacks</a>
-
-  <div id="productArea"></div>
-
-  <div id="similarProducts">
-    <h2>Similar Products</h2>
-    <div class="similar-grid" id="similarGrid"></div>
-  </div>
-</div>
-
-
-<script>
-/* ------------------------------------------
-   SNACKS DATA
-   ------------------------------------------ */
-const allProducts = [
-  {
-    name:"Walkers Quavers Grab Bag",
-    img:"img/categories/slider-10.png",
-    weight:"34g",
-    price:"£1.60",
-    category:"crisps",
-    ingredients:"Potato starch, sunflower oil, cheese flavour (whey milk, milk powder, MSG), onion powder, paprika, rice flour, soya flour, salt, wheat flour.",
-    allergens:"Contains milk, soya, barley, wheat.",
-    nutrition:"Per 100g: Energy 536 kcal; Fat 30.8g; Carbs 62.1g; Protein 2.5g; Salt 2.14g."
-  },
-
-  {
-    name:"Skips Prawn Cocktail Grab Bag",
-    img:"img/categories/slider-33.png",
-    weight:"35g",
-    price:"£1.60",
-    category:"crisps",
-    ingredients:"Tapioca starch, sunflower oil, maize flour, prawn cocktail seasoning.",
-    allergens:"Contains crustaceans. May contain milk, gluten, soya.",
-    nutrition:"Per 100g: Energy 543 kcal; Fat 32g; Carbs 57g; Protein 4.7g; Salt 2.2g."
-  },
-
-  {
-    name:"KP Nuts Original Salted Peanuts",
-    img:"img/categories/slider-36.png",
-    weight:"30g",
-    price:"£1.60",
-    category:"nuts",
-    ingredients:"Peanuts, sunflower oil, salt.",
-    allergens:"Contains peanuts.",
-    nutrition:"Per 100g: Energy 614 kcal; Fat 51g; Carbs 5.6g; Protein 30g."
-  },
-
-  {
-    name:"KP Nuts Dry Roasted Peanuts",
-    img:"img/categories/slider35.png",
-    weight:"30g",
-    price:"£1.60",
-    category:"nuts",
-    ingredients:"Peanuts, seasoning.",
-    allergens:"Contains peanuts.",
-    nutrition:"Per 100g: Energy 614 kcal; Fat 51g; Protein 30g."
-  },
-
-  {
-    name:"Penn State Sour Cream and Chive Pretzels",
-    img:"img/categories/slider-34.png",
-    weight:"175g",
-    price:"£2.25",
-    category:"pretzels",
-    ingredients:"Wheat flour, dried potato, rapeseed oil, sour cream & chive flavour.",
-    allergens:"Contains wheat, milk.",
-    nutrition:"Per 100g: Energy 414 kcal; Fat 9.2g; Carbs 71g; Protein 10g."
-  },
-
-  {
-    name:"Weetabix Breakfast Cereal",
-    img:"img/categories/slider-38.png",
-    weight:"12 Pack",
-    price:"£3.00",
-    category:"cereal",
-    ingredients:"Wholegrain wheat, barley malt extract, sugar, salt.",
-    allergens:"Contains wheat and barley.",
-    nutrition:"Per 100g: Energy 362 kcal; Protein 12g; Carbs 69g; Fat 2g."
-  }
-];
-
-/* ------------------------------------------
-   LOAD PRODUCT FROM STORAGE
------------------------------------------- */
-const stored = localStorage.getItem("productDetails");
-const product = stored ? JSON.parse(stored) : null;
-
-if (!product) {
-  document.getElementById("productArea").innerHTML =
-    "<p>Product not found. <a href='snacks.html'>Return</a></p>";
-} else {
-  renderProduct(product);
-  loadSimilar(product);
-}
-
-/* ------------------------------------------
-   RENDER PRODUCT
------------------------------------------- */
-function renderProduct(p){
-  const safe = v => v || "";
-
-  document.getElementById("productArea").innerHTML = `
-    <div class="product-card">
-      <div class="media">
-        <img src="${safe(p.img)}">
+  <!-- HEADER START -->
+  <header class="top-header">
+    <nav class="first-nav_contact">
+      <div class="left">
+        <ul>
+          <li><a href="mailto:Ask@bhojan.uk"><span class="first-nav_contact-icon img"><img src="img/icons/email_sealed_icon_fill_white.png" alt="Bhojan Email"></span><span>Ask@bhojan.uk</span></a></li>
+          <li><a href="tel:44 7721996484"><span class="first-nav_contact-icon follow"><img src="img/icons/landline_icon_fill_white.png" alt="Bhojan Phone"></span><span>+44 07721996484</span></a></li>
+        </ul>
       </div>
-
-      <div class="info">
-        <div class="title">${safe(p.name)}</div>
-        <div class="meta">${safe(p.weight)}</div>
-        <div class="price">${safe(p.price)}</div>
-
-        <div class="qtyrow">
-          <span style="font-weight:700">Quantity</span>
-          <button class="qtybtn" id="minusBtn">-</button>
-          <div id="qtyVal" style="min-width:36px;text-align:center">1</div>
-          <button class="qtybtn" id="plusBtn">+</button>
-        </div>
-
-        <button class="addbtn" id="addToCartBtn">Add to cart</button>
-
-        <div class="section">
-          <h3>Ingredients</h3>
-          <div class="box">${safe(p.ingredients)}</div>
-        </div>
-
-        <div class="section">
-          <h3>Allergens</h3>
-          <div class="box">${safe(p.allergens)}</div>
-        </div>
-
-        <div class="section">
-          <h3>Nutritional Information</h3>
-          <div class="box">${safe(p.nutrition)}</div>
-        </div>
-
-        <div class="section">
-          <h3>Seller & Delivery</h3>
-          <div class="box">Sold by: Shree Hari Marketing LTD
-          <br>Delivery: Standard Delivery</div>
-        </div>
+      <div class="right">
+        <ul>
+          <li><a href="https://wa.me/4402034886800" target="_blank"><span class="first-nav_contact-icon"><img src="img/socials/whatsapp_icon_white.svg" alt="WhatsApp"></span></a></li>
+          <li><a href="https://www.instagram.com/bhojanuk/" target="_blank"><span class="first-nav_contact-icon"><img src="img/socials/ig_icon_white.svg" alt="Instagram"></span></a></li>
+          <li><a href="https://www.facebook.com/bhojanuk/" target="_blank"><span class="first-nav_contact-icon"><img src="img/socials/fb_icon_white.svg" alt="Facebook"></span></a></li>
+        </ul>
       </div>
-    </div>
-  `;
-
-  let qty = 1;
-  document.getElementById("plusBtn").onclick = () => {
-    qty++; document.getElementById("qtyVal").innerText = qty;
-  };
-  document.getElementById("minusBtn").onclick = () => {
-    if(qty>1){ qty--; document.getElementById("qtyVal").innerText = qty; }
-  };
-
-  document.getElementById("addToCartBtn").onclick = () => addToCart(p, qty);
-}
-
-/* ------------------------------------------
-   SIMILAR PRODUCTS
------------------------------------------- */
-function loadSimilar(p){
-  const list = allProducts.filter(i =>
-    i.category === p.category &&
-    i.img !== p.img      // remove identical product
-  );
-
-  document.getElementById("similarGrid").innerHTML =
-    list.map(item => `
-      <div class="similar-card">
-        <img src="${item.img}" onclick="openProduct('${item.name}')">
-        <div class="similar-name" onclick="openProduct('${item.name}')">${item.name}</div>
-        <div class="similar-weight">${item.weight}</div>
-        <div class="similar-price">${item.price}</div>
-
-        <button class="similar-addbtn" onclick="addSimilar('${item.name}', this)">
-          Add
+    </nav>
+    <nav class="navbar header-nav navbar-expand-lg">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd">
+          <span></span><span></span><span></span>
         </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbar-wd">
+          <ul class="navbar-nav">
+            <li><a class="nav-link" href="index.html">Home</a></li>
+            <li><a class="nav-link active" href="groceries.html">Groceries</a></li>
+             <li><a class="nav-link" href="snacks.html">Snacks</a></li>
+             <li><a class="nav-link" href="cart.html">Cart</a></li>
+            <li><a class="nav-link" href="contact.html">Contact</a></li>
+          </ul>
+        </div>
       </div>
-    `).join('');
-}
+    </nav>
+  </header><br><br>
+  <!-- HEADER END -->
 
+  <!-- TOAST -->
+  <div id="toast">Item added to cart</div>
 
+  <h2>Popular Snacks</h2>
+  <div class="category-grid" id="snacksGrid">
+    <!-- Cards are generated by JS -->
+  </div>
 
-/* ADD TO CART */
-function priceNumber(s){ return parseFloat(s.replace(/[^\d.]/g,'')); }
-function addToCart(p, qty){
-  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+  <!-- FOOTER -->
+  <footer style="background-color:#ff5a00; color:#fff; padding:14px 0; font-size:14px; text-align:center;">
+    <div class="container text-center">
+      © 2025 Shree Hari Marketing LTD | 
+      <a href="#">Cookies Policy</a> | 
+      <a href="#">Privacy Policy</a> | 
+      <a href="#">Terms</a>
+    </div>
+  </footer>
 
-  const exist = cart.find(i => i.name === p.name);
-  if (exist) exist.quantity += qty;
-  else cart.push({ name:p.name, img:p.img, quantity:qty, price:priceNumber(p.price) });
+  <script>
+    /****************************************
+     * ALL SNACKS DATA (used for grid + details)
+     ****************************************/
+    const snacks = [
+      {
+        key: "walkers",
+        name: "Walkers Quavers Grab Bag",
+        img: "img/categories/slider-10.png",
+        weight: "34g",
+        price: "£1.60",
+        category: "crisps",
+        ingredients: "Potatoes, Vegetable Oil, Salt, Flavourings.",
+        allergens: "May contain traces of Milk and Gluten.",
+        nutrition: "Per 100g: Energy 500 kcal, Protein 6g, Carbohydrate 56g, Fat 28g."
+      },
+      {
+        key: "skips",
+        name: "Skips Prawn Cocktail Grab Bag",
+        img: "img/categories/slider-33.png",
+        weight: "35g",
+        price: "£1.60",
+        category: "crisps",
+        ingredients: "Potatoes, Vegetable Oil, Prawn Flavouring.",
+        allergens: "Contains Crustaceans.",
+        nutrition: "Per 100g: Energy 520 kcal, Protein 5g, Carbohydrate 55g, Fat 30g."
+      },
+      {
+        key: "kp_original",
+        name: "KP Nuts Original Salted Peanuts",
+        img: "img/categories/slider-36.png",
+        weight: "30g",
+        price: "£1.60",
+        category: "nuts",
+        ingredients: "Peanuts, Salt.",
+        allergens: "Contains Peanuts.",
+        nutrition: "Per 100g: Energy 567 kcal, Protein 26g, Carbohydrate 16g, Fat 49g."
+      },
+      {
+        key: "kp_dry",
+        name: "KP Nuts Dry Roasted Peanuts",
+        img: "img/categories/slider35.png",
+        weight: "30g",
+        price: "£1.60",
+        category: "nuts",
+        ingredients: "Peanuts.",
+        allergens: "Contains Peanuts.",
+        nutrition: "Per 100g: Energy 568 kcal, Protein 25g, Carbohydrate 16g, Fat 50g."
+      },
+      {
+        key: "penn_state",
+        name: "Penn State Sour Cream & Chive Sharing Pretzels",
+        img: "img/categories/slider-34.png",
+        weight: "175g",
+        price: "£2.25",
+        category: "pretzels",
+        ingredients: "Wheat Flour, Vegetable Oil, Salt, Sour Cream Powder, Chive.",
+        allergens: "Contains Gluten, Milk.",
+        nutrition: "Per 100g: Energy 470 kcal, Protein 8g, Carbohydrate 70g, Fat 14g."
+      },
+      {
+        key: "weetabix",
+        name: "Weetabix Breakfast Cereal",
+        img: "img/categories/slider-38.png",
+        weight: "12 Pack",
+        price: "£3.00",
+        category: "cereal",
+        ingredients: "Wholegrain Wheat.",
+        allergens: "Contains Gluten.",
+        nutrition: "Per 100g: Energy 390 kcal, Protein 13g, Carbohydrate 72g, Fat 4g."
+      }
+    ];
 
-  localStorage.setItem("cart", JSON.stringify(cart));
-  showToast();
-}
+    // Save snacks dataset for details page to read (optional but useful)
+    localStorage.setItem("snacksData", JSON.stringify(snacks));
 
-/* ADD SIMILAR */
-function addSimilar(name, btn){
-  btn.disabled = true;
+    /****************************************
+     * Render grid
+     ****************************************/
+    const grid = document.getElementById("snacksGrid");
+    grid.innerHTML = snacks.map(p => `
+      <div class="category-card" data-key="${p.key}">
+        <img src="${p.img}" alt="${p.name}" />
+        <p class="title">${p.name}</p>
+        <div class="product-meta">
+          <p class="product-weight">${p.weight}</p>
+          <p class="product-price">${p.price}</p>
+          <button class="add-to-cart" data-name="${p.name}" data-price="${p.price.replace(/[^\d.]/g,'')}" data-img="${p.img}">Add to Cart</button>
+        </div>
+      </div>
+    `).join("");
 
-  const p = allProducts.find(i => i.name === name);
-  let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    /****************************************
+     * Add-to-cart on product buttons:
+     ****************************************/
+    document.querySelectorAll(".add-to-cart").forEach(btn => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation(); // IMPORTANT: prevent bubbling to card click
+        const name = btn.dataset.name;
+        const price = parseFloat(btn.dataset.price);
+        const img = btn.dataset.img;
+        let cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const existing = cart.find(item => item.name === name);
+        if (existing) existing.quantity += 1;
+        else cart.push({ name, price, img, quantity: 1 });
+        localStorage.setItem("cart", JSON.stringify(cart));
 
-  const exist = cart.find(i => i.name === p.name);
-  if (exist) exist.quantity += 1;
-  else cart.push({ name:p.name, img:p.img, quantity:1, price:priceNumber(p.price) });
+        // Small UI feedback
+        const orig = btn.innerText;
+        btn.innerText = "Added";
+        showToast();
+        setTimeout(()=> btn.innerText = orig, 900);
+      });
+    });
 
-  localStorage.setItem("cart", JSON.stringify(cart));
+    /****************************************
+     * Card click: open snacks-details.html with full product info saved to localStorage
+     ****************************************/
+    document.querySelectorAll(".category-card").forEach(card => {
+      card.addEventListener("click", () => {
+        const key = card.dataset.key;
+        const product = snacks.find(s => s.key === key);
+        if(!product) return;
 
-  btn.classList.add("added");
-  btn.innerText = "Added ✓";
+        // Build productDetails object same shape as product-details.html expects
+        const productDetails = {
+          key: product.key,
+          name: product.name,
+          img: product.img,
+          price: product.price,
+          weight: product.weight,
+          ingredients: product.ingredients || "Information not available",
+          allergens: product.allergens || "Information not available",
+          nutrition: product.nutrition || "Information not available",
+          category: product.category
+        };
 
-  showToast();
-  setTimeout(()=>location.href="cart.html",600);
-}
+        localStorage.setItem("productDetails", JSON.stringify(productDetails));
+        window.location.href = "snacks-details.html";
+      });
+    });
 
-/* SHOW TOAST */
-function showToast(){
-  const t=document.getElementById("toast");
-  t.classList.add("show");
-  setTimeout(()=>t.classList.remove("show"),1500);
-}
-
-/* ------------------------------------------
-   OPEN PRODUCT (similar click)
------------------------------------------- */
-function openProduct(name){
-  const p = allProducts.find(i => i.name === name);
-  if (!p) return;
-
-  localStorage.setItem("productDetails", JSON.stringify(p));
-  location.href = "product-details.html";
-}
-</script>
-
+    /****************************************
+     * Toast
+     ****************************************/
+    function showToast(){
+      const toast = document.getElementById("toast");
+      toast.classList.add("show");
+      setTimeout(() => { toast.classList.remove("show"); }, 1500);
+    }
+  </script>
 </body>
 </html>
