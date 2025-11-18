@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=0.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=0" />
   <title>Bhojan - Snacks & Drinks</title>
 
   <link rel="stylesheet" href="css/bootstrap.min.css" />
@@ -47,6 +47,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      cursor: pointer;
     }
 
     .category-card:hover {
@@ -60,6 +61,7 @@
       object-fit: contain;
       border-radius: 10px;
       margin-bottom: 10px;
+      pointer-events: none;
     }
 
     .category-card p {
@@ -114,27 +116,48 @@
     footer a:hover {
       text-decoration: underline;
     }
+
+    /* Toast */
+    #toast {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      background:#222;
+      color:#fff;
+      padding:12px 20px;
+      border-radius:8px;
+      font-size:14px;
+      opacity:0;
+      transition:0.4s;
+      z-index:9999;
+    }
+    #toast.show {
+      opacity:1;
+      bottom:40px;
+    }
   </style>
 </head>
 
 <body>
-  <!-- HEADER START -->
+  <!-- HEADER -->
   <header class="top-header">
     <nav class="first-nav_contact">
       <div class="left">
         <ul>
-          <li><a href="mailto:Ask@bhojan.uk"><span class="first-nav_contact-icon img"><img src="img/icons/email_sealed_icon_fill_white.png" alt="Bhojan Email"></span><span>Ask@bhojan.uk</span></a></li>
-          <li><a href="tel:44 7721996484"><span class="first-nav_contact-icon follow"><img src="img/icons/landline_icon_fill_white.png" alt="Bhojan Phone"></span><span>+44 07721996484</span></a></li>
+          <li><a href="mailto:Ask@bhojan.uk"><img src="img/icons/email_sealed_icon_fill_white.png" alt="Bhojan Email" style="width:16px; margin-right:5px;">Ask@bhojan.uk</a></li>
+          <li><a href="tel:+447721996484"><img src="img/icons/landline_icon_fill_white.png" alt="Bhojan Phone" style="width:16px; margin-right:5px;">+44 07721996484</a></li>
         </ul>
       </div>
       <div class="right">
         <ul>
-          <li><a href="https://wa.me/4402034886800" target="_blank"><span class="first-nav_contact-icon"><img src="img/socials/whatsapp_icon_white.svg" alt="WhatsApp"></span></a></li>
-          <li><a href="https://www.instagram.com/bhojanuk/" target="_blank"><span class="first-nav_contact-icon"><img src="img/socials/ig_icon_white.svg" alt="Instagram"></span></a></li>
-          <li><a href="https://www.facebook.com/bhojanuk/" target="_blank"><span class="first-nav_contact-icon"><img src="img/socials/fb_icon_white.svg" alt="Facebook"></span></a></li>
+          <li><a href="https://wa.me/4402034886800" target="_blank"><img src="img/socials/whatsapp_icon_white.svg" alt="WhatsApp" style="width:16px;"></a></li>
+          <li><a href="https://www.instagram.com/bhojanuk/" target="_blank"><img src="img/socials/ig_icon_white.svg" alt="Instagram" style="width:16px;"></a></li>
+          <li><a href="https://www.facebook.com/bhojanuk/" target="_blank"><img src="img/socials/fb_icon_white.svg" alt="Facebook" style="width:16px;"></a></li>
         </ul>
       </div>
     </nav>
+
     <nav class="navbar header-nav navbar-expand-lg">
       <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-wd">
@@ -152,86 +175,123 @@
       </div>
     </nav>
   </header>
-  <!-- HEADER END -->
 
-  <br><br>
+  <!-- TOAST -->
+  <div id="toast">Item added to cart</div>
 
   <h2>Popular Snacks</h2>
-  <div class="category-grid">
-    <div class="category-card">
-      <img src="img/categories/slider-10.png" alt="Walkers Quavers">
-      <p>Walkers Quavers Grab Bag</p>
-      <div class="product-meta">
-        <p class="product-weight">34g</p>
-        <p class="product-price">£1.60</p>
-        <button class="add-to-cart" data-name="Walkers Quavers Grab Bag" data-price="1.60" data-img="img/categories/slider-10.png">Add to Cart</button>
-      </div>
-    </div>
-
-    <div class="category-card">
-      <img src="img/categories/slider-33.png" alt="Skips Prawn Cocktail">
-      <p>Skips Prawn Cocktail Grab Bag</p>
-      <div class="product-meta">
-        <p class="product-weight">35g</p>
-        <p class="product-price">£1.60</p>
-        <button class="add-to-cart" data-name="Skips Prawn Cocktail Grab Bag" data-price="1.60" data-img="img/categories/slider-33.png">Add to Cart</button>
-      </div>
-    </div>
-
-    <div class="category-card">
-      <img src="img/categories/slider-36.png" alt="KP Nuts Original">
-      <p>KP Nuts Original Salted Peanuts</p>
-      <div class="product-meta">
-        <p class="product-weight">30g</p>
-        <p class="product-price">£1.60</p>
-        <button class="add-to-cart" data-name="KP Nuts Original Salted Peanuts" data-price="1.60" data-img="img/categories/slider-36.png">Add to Cart</button>
-      </div>
-    </div>
-
-    <div class="category-card">
-      <img src="img/categories/slider35.png" alt="KP Nuts Dry Roasted">
-      <p>KP Nuts Dry Roasted Peanuts</p>
-      <div class="product-meta">
-        <p class="product-weight">30g</p>
-        <p class="product-price">£1.60</p>
-        <button class="add-to-cart" data-name="KP Nuts Dry Roasted Peanuts" data-price="1.60" data-img="img/categories/slider35.png">Add to Cart</button>
-      </div>
-    </div>
-
-    <div class="category-card">
-      <img src="img/categories/slider-34.png" alt="Penn State Pretzels">
-      <p>Penn State Sour Cream & Chive Sharing Pretzels</p>
-      <div class="product-meta">
-        <p class="product-weight">175g</p>
-        <p class="product-price">£2.25</p>
-        <button class="add-to-cart" data-name="Penn State Sour Cream & Chive Pretzels" data-price="2.25" data-img="img/categories/slider-34.png">Add to Cart</button>
-      </div>
-    </div>
-
-    <div class="category-card">
-      <img src="img/categories/slider-38.png" alt="Weetabix Cereal">
-      <p>Weetabix Breakfast Cereal</p>
-      <div class="product-meta">
-        <p class="product-weight">12 Pack</p>
-        <p class="product-price">£3.00</p>
-        <button class="add-to-cart" data-name="Weetabix Breakfast Cereal" data-price="3.00" data-img="img/categories/slider-38.png">Add to Cart</button>
-      </div>
-    </div>
+  <div class="category-grid" id="snacksGrid">
+    <!-- Cards are generated by JS -->
   </div>
 
   <!-- FOOTER -->
-  <footer class="footer_bottom" style="background-color:#ff5a00; color:#fff; padding:14px 0; font-size:14px;">
+  <footer style="background-color:#ff5a00; color:#fff; padding:14px 0; font-size:14px; text-align:center;">
     <div class="container text-center">
-      © 2025 Shree Hari Marketing LTD |
-      <a href="#">Cookies Policy</a> |
-      <a href="#">Privacy Policy</a> |
+      © 2025 Shree Hari Marketing LTD | 
+      <a href="#">Cookies Policy</a> | 
+      <a href="#">Privacy Policy</a> | 
       <a href="#">Terms</a>
     </div>
   </footer>
 
   <script>
+    /****************************************
+     * ALL SNACKS DATA (used for grid + details)
+     ****************************************/
+    const snacks = [
+      {
+        key: "walkers",
+        name: "Walkers Quavers Grab Bag",
+        img: "img/categories/slider-10.png",
+        weight: "34g",
+        price: "£1.60",
+        category: "crisps",
+        ingredients: "Potatoes, Vegetable Oil, Salt, Flavourings.",
+        allergens: "May contain traces of Milk and Gluten.",
+        nutrition: "Per 100g: Energy 500 kcal, Protein 6g, Carbohydrate 56g, Fat 28g."
+      },
+      {
+        key: "skips",
+        name: "Skips Prawn Cocktail Grab Bag",
+        img: "img/categories/slider-33.png",
+        weight: "35g",
+        price: "£1.60",
+        category: "crisps",
+        ingredients: "Potatoes, Vegetable Oil, Prawn Flavouring.",
+        allergens: "Contains Crustaceans.",
+        nutrition: "Per 100g: Energy 520 kcal, Protein 5g, Carbohydrate 55g, Fat 30g."
+      },
+      {
+        key: "kp_original",
+        name: "KP Nuts Original Salted Peanuts",
+        img: "img/categories/slider-36.png",
+        weight: "30g",
+        price: "£1.60",
+        category: "nuts",
+        ingredients: "Peanuts, Salt.",
+        allergens: "Contains Peanuts.",
+        nutrition: "Per 100g: Energy 567 kcal, Protein 26g, Carbohydrate 16g, Fat 49g."
+      },
+      {
+        key: "kp_dry",
+        name: "KP Nuts Dry Roasted Peanuts",
+        img: "img/categories/slider35.png",
+        weight: "30g",
+        price: "£1.60",
+        category: "nuts",
+        ingredients: "Peanuts.",
+        allergens: "Contains Peanuts.",
+        nutrition: "Per 100g: Energy 568 kcal, Protein 25g, Carbohydrate 16g, Fat 50g."
+      },
+      {
+        key: "penn_state",
+        name: "Penn State Sour Cream & Chive Sharing Pretzels",
+        img: "img/categories/slider-34.png",
+        weight: "175g",
+        price: "£2.25",
+        category: "pretzels",
+        ingredients: "Wheat Flour, Vegetable Oil, Salt, Sour Cream Powder, Chive.",
+        allergens: "Contains Gluten, Milk.",
+        nutrition: "Per 100g: Energy 470 kcal, Protein 8g, Carbohydrate 70g, Fat 14g."
+      },
+      {
+        key: "weetabix",
+        name: "Weetabix Breakfast Cereal",
+        img: "img/categories/slider-38.png",
+        weight: "12 Pack",
+        price: "£3.00",
+        category: "cereal",
+        ingredients: "Wholegrain Wheat.",
+        allergens: "Contains Gluten.",
+        nutrition: "Per 100g: Energy 390 kcal, Protein 13g, Carbohydrate 72g, Fat 4g."
+      }
+    ];
+
+    // Save snacks dataset for details page to read (optional but useful)
+    localStorage.setItem("snacksData", JSON.stringify(snacks));
+
+    /****************************************
+     * Render grid
+     ****************************************/
+    const grid = document.getElementById("snacksGrid");
+    grid.innerHTML = snacks.map(p => `
+      <div class="category-card" data-key="${p.key}">
+        <img src="${p.img}" alt="${p.name}" />
+        <p class="title">${p.name}</p>
+        <div class="product-meta">
+          <p class="product-weight">${p.weight}</p>
+          <p class="product-price">${p.price}</p>
+          <button class="add-to-cart" data-name="${p.name}" data-price="${p.price.replace(/[^\d.]/g,'')}" data-img="${p.img}">Add to Cart</button>
+        </div>
+      </div>
+    `).join("");
+
+    /****************************************
+     * Add-to-cart on product buttons:
+     ****************************************/
     document.querySelectorAll(".add-to-cart").forEach(btn => {
-      btn.addEventListener("click", () => {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation(); // IMPORTANT: prevent bubbling to card click
         const name = btn.dataset.name;
         const price = parseFloat(btn.dataset.price);
         const img = btn.dataset.img;
@@ -240,9 +300,50 @@
         if (existing) existing.quantity += 1;
         else cart.push({ name, price, img, quantity: 1 });
         localStorage.setItem("cart", JSON.stringify(cart));
-        
+
+        // Small UI feedback
+        const orig = btn.innerText;
+        btn.innerText = "Added";
+        showToast();
+        setTimeout(()=> btn.innerText = orig, 900);
       });
     });
+
+    /****************************************
+     * Card click: open snacks-details.html with full product info saved to localStorage
+     ****************************************/
+    document.querySelectorAll(".category-card").forEach(card => {
+      card.addEventListener("click", () => {
+        const key = card.dataset.key;
+        const product = snacks.find(s => s.key === key);
+        if(!product) return;
+
+        // Build productDetails object same shape as product-details.html expects
+        const productDetails = {
+          key: product.key,
+          name: product.name,
+          img: product.img,
+          price: product.price,
+          weight: product.weight,
+          ingredients: product.ingredients || "Information not available",
+          allergens: product.allergens || "Information not available",
+          nutrition: product.nutrition || "Information not available",
+          category: product.category
+        };
+
+        localStorage.setItem("productDetails", JSON.stringify(productDetails));
+        window.location.href = "snacks-details.html";
+      });
+    });
+
+    /****************************************
+     * Toast
+     ****************************************/
+    function showToast(){
+      const toast = document.getElementById("toast");
+      toast.classList.add("show");
+      setTimeout(() => { toast.classList.remove("show"); }, 1500);
+    }
   </script>
 </body>
 </html>
