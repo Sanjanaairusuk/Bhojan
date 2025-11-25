@@ -146,7 +146,83 @@
       text-decoration: underline;
     }
   </style>
-</head>
+</head><!-- Customer Details Popup -->
+<div id="customerPopup" style="
+  display:none; position:fixed; top:0; left:0; width:100%; height:100%;
+  background:rgba(0,0,0,0.55); backdrop-filter:blur(6px);
+  justify-content:center; align-items:center; padding:20px; z-index:9999;
+">
+
+  <div style="
+    background:#fff; padding:50px; width:100%; max-width:420px;
+    border-radius:18px; font-family:'Poppins', sans-serif;
+    box-shadow:0 8px 30px rgba(0,0,0,0.15);
+    animation:popIn 0.25s ease-out;
+  ">
+
+    <h2 style="
+      margin-top:0; margin-bottom:18px; 
+      color:#ff5a00; font-weight:700; font-size:1.4rem;
+      text-align:center;
+    ">
+      Enter Your Details
+    </h2>
+
+    <label style="font-weight:600; color:#444;">Name</label>
+    <input id="custName" type="text" style="
+      width:100%; padding:12px; margin:6px 0 12px;
+      border-radius:10px; border:1px solid #ddd;
+      background:#fffaf5; font-size:0.95rem;
+      transition:0.2s;
+    " onfocus="this.style.borderColor='#ff5a00'">
+
+    <label style="font-weight:600; color:#444;">Phone Number</label>
+    <input id="custPhone" type="tel" style="
+      width:100%; padding:12px; margin:6px 0 12px;
+      border-radius:10px; border:1px solid #ddd;
+      background:#fffaf5; font-size:0.95rem;
+      transition:0.2s;
+    " onfocus="this.style.borderColor='#ff5a00'">
+
+    <label style="font-weight:600; color:#444;">Delivery Address</label>
+    <textarea id="custAddress" rows="3" style="
+      width:100%; padding:12px; margin:6px 0 12px;
+      border-radius:10px; border:1px solid #ddd;
+      background:#fffaf5; font-size:0.95rem;
+      transition:0.2s;
+    " onfocus="this.style.borderColor='#ff5a00'"></textarea>
+
+    <label style="font-weight:600; color:#444;">Additional Notes (optional)</label>
+    <textarea id="custNote" rows="2" style="
+      width:100%; padding:12px; margin:6px 0 18px;
+      border-radius:10px; border:1px solid #ddd;
+      background:#fffaf5; font-size:0.95rem;
+      transition:0.2s;
+    " onfocus="this.style.borderColor='#ff5a00'"></textarea>
+
+    <button onclick="submitCustomerOrder()" style="
+      width:100%; padding:14px; background:#ff5a00;
+      color:white; border:none; border-radius:10px;
+      font-size:1rem; font-weight:600;
+      cursor:pointer; transition:0.2s;
+      box-shadow:0 4px 10px rgba(255,90,0,0.3);
+    " onmouseover="this.style.background='#e65100'">
+      Submit Order
+    </button>
+
+    <button onclick="closePopup()" style="
+      width:100%; padding:12px; background:#e0e0e0;
+      border:none; border-radius:10px; margin-top:10px;
+      cursor:pointer; font-weight:600; color:#444;
+      transition:0.2s;
+    " onmouseover="this.style.background='#c8c8c8'">
+      Cancel
+    </button>
+    
+  </div>
+</div>
+
+<style>
 <body>
   
   <h1>Your Cart</h1>
@@ -224,27 +300,75 @@
 
     // WhatsApp order button
     document.getElementById("order-btn").addEventListener("click", function () {
-      if (cart.length === 0) {
-        alert("Your cart is empty!");
-        return;
-      }
+  if (cart.length === 0) {
+    alert("Your cart is empty!");
+    return;
+  }
+  document.getElementById("customerPopup").style.display = "flex";
+});
 
-      let message = "🛒 *New Order from Bhojan Website*\n\n";
-      cart.forEach(item => {
-        message += `• ${item.name} × ${item.quantity} = £${(item.price * item.quantity).toFixed(2)}\n`;
-      });
+// Close form
+function closePopup() {
+  document.getElementById("customerPopup").style.display = "none";
+}
 
-      let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-      message += `\n💰 *Total:* £${total.toFixed(2)}\n\n📍 Please confirm delivery address.`;
+// Submit order with customer details
+function submitCustomerOrder() {
+  let name = document.getElementById("custName").value.trim();
+  let phone = document.getElementById("custPhone").value.trim();
+  let address = document.getElementById("custAddress").value.trim();
+  let note = document.getElementById("custNote").value.trim();
 
-      let phone = "447721996484"; // Change here if WhatsApp number changes
-      let url = `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(message)}`;
+  if (!name || !phone || !address) {
+    alert("Please fill in all required fields.");
+    return;
+  }
 
-      window.open(url, "_blank");
-    });
+  let email = "ask@bhojan.uk"; 
+  let subject = "🛒 New Customer Order - Bhojan";
+
+  let orderId = "ORD-" + Math.floor(100000 + Math.random() * 900000);
+
+  let now = new Date();
+  let dateTime = now.toLocaleDateString() + " " + now.toLocaleTimeString();
+
+  let body = `New Order Received\n`;
+  body += `----------------------------------\n`;
+  body += `Order ID: ${orderId}\n`;
+  body += `Date & Time: ${dateTime}\n`;
+  body += `----------------------------------\n\n`;
+
+  body += `Customer Details:\n`;
+  body += `Name: ${name}\n`;
+  body += `Phone: ${phone}\n`;
+  body += `Address: ${address}\n`;
+  body += note ? `Notes: ${note}\n` : "";
+  body += `\n----------------------------------\n`;
+
+  body += `Items:\n`;
+  cart.forEach(item => {
+    body += `• ${item.name} (x${item.quantity}) = £${(item.price * item.quantity).toFixed(2)}\n`;
+  });
+
+  let total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  body += `\nTotal Amount: £${total.toFixed(2)}\n`;
+  body += `----------------------------------\n\n`;
+
+  body += `Thank you,\nBhojan Team`;
+
+  let mailtoURL = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+// After generating mailto URL
+window.location.href = mailtoURL;
+
+// Refresh page after sending the order
+setTimeout(() => {
+    location.reload();
+}, 500);
+
+}
+
 
     renderCart();
-  </script>
 
 </body>
 </html>
