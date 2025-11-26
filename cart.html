@@ -146,7 +146,7 @@
       text-decoration: underline;
     }
   </style>
-</head><!-- Customer Details Popup -->
+<!-- Customer Details Popup -->
 <div id="customerPopup" style="
   display:none; position:fixed; top:0; left:0; width:100%; height:100%;
   background:rgba(0,0,0,0.55); backdrop-filter:blur(6px);
@@ -223,6 +223,12 @@
 </div>
 
 <style>
+@keyframes popIn {
+  from { transform:scale(0.85); opacity:0; }
+  to   { transform:scale(1); opacity:1; }
+}
+</style>
+
 <body>
   
   <h1>Your Cart</h1>
@@ -232,7 +238,7 @@
   <h2 id="cart-total">Total: £0.00</h2>
   
   <!-- WhatsApp Order Button -->
-  <button id="order-btn">Order on WhatsApp</button>
+  <button id="order-btn">Order on Email</button>
 
   <div style="text-align:center;">
     <a href="index.html" class="back-link">
@@ -298,8 +304,8 @@
       renderCart();
     }
 
-    // WhatsApp order button
-    document.getElementById("order-btn").addEventListener("click", function () {
+   // Open form popup
+document.getElementById("order-btn").addEventListener("click", function () {
   if (cart.length === 0) {
     alert("Your cart is empty!");
     return;
@@ -369,6 +375,7 @@ setTimeout(() => {
 
 
     renderCart();
+  </script>
 
 </body>
 </html>
