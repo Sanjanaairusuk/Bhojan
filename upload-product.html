@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload Product - Vendor</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- RESET & BASE ---------- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to bottom, #fff8f0, #fff);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    /* ---------- CONTAINER ---------- */
+    .container {
+      background: #fff;
+      width: 100%;
+      max-width: 500px;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .container:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+    }
+
+    /* ---------- HEADER ---------- */
+    .container h2 {
+      color: #ff6b00;
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    /* ---------- FORM ELEMENTS ---------- */
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: #333;
+    }
+    input, textarea, select {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: border 0.3s ease;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: #ff6b00;
+      outline: none;
+      box-shadow: 0 0 6px rgba(255,107,0,0.3);
+    }
+    textarea {
+      resize: none;
+    }
+
+    /* ---------- BUTTON ---------- */
+    button {
+      width: 100%;
+      background: linear-gradient(135deg, #ff8a00, #ff5a00);
+      color: #fff;
+      font-size: 1.1rem;
+      font-weight: 600;
+      padding: 12px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.2s ease;
+    }
+    button:hover {
+      background: linear-gradient(135deg, #ff5a00, #e64e00);
+      transform: scale(1.03);
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 480px) {
+      .container {
+        padding: 25px 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Upload Product</h2>
+
+    <label for="productName">Product Name</label>
+    <input type="text" id="productName" placeholder="Enter product name">
+
+    <label for="productCategory">Category</label>
+    <select id="productCategory">
+      <option value="groceries">Groceries</option>
+      <option value="snacks">Snacks</option>
+    </select>
+
+    <label for="productPrice">Price (£)</label>
+    <input type="number" id="productPrice" placeholder="Enter price">
+
+    <label for="productImage">Image URL</label>
+    <input type="text" id="productImage" placeholder="Enter image URL">
+
+    <label for="productDesc">Description</label>
+    <textarea id="productDesc" rows="4" placeholder="Enter description"></textarea>
+
+    <button onclick="uploadProduct()">Add Product</button>
+  </div>
+
+  <script>
+    function uploadProduct() {
+      let name = document.getElementById("productName").value.trim();
+      let category = document.getElementById("productCategory").value;
+      let price = document.getElementById("productPrice").value;
+      let image = document.getElementById("productImage").value.trim();
+      let desc = document.getElementById("productDesc").value.trim();
+
+      if (!name || !category || !price || !image) {
+        alert("Please fill all fields!");
+        return;
+      }
+
+      let products = JSON.parse(localStorage.getItem("products") || "[]");
+      let newProduct = { name, category, price, image, desc };
+      products.push(newProduct);
+      localStorage.setItem("products", JSON.stringify(products));
+
+      alert("Product added successfully!");
+
+      // Redirect based on category
+      if (category === "groceries") window.location.href = "groceries.html";
+      else if (category === "snacks") window.location.href = "snacks.html";
+
+      // Clear fields
+      document.getElementById("productName").value = "";
+      document.getElementById("productPrice").value = "";
+      document.getElementById("productImage").value = "";
+      document.getElementById("productDesc").value = "";
+    }
+  </script>
+
+</body>
+</html>
