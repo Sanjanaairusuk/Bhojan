@@ -349,7 +349,63 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         localStorage.setItem("productDetails", JSON.stringify(productDetails));
         window.location.href = "snacks-details.html";
       });
-    });
+    });// Load vendor-uploaded products from localStorage
+let uploadedProducts = JSON.parse(localStorage.getItem("products") || "[]");
+
+// Filter only snacks
+uploadedProducts = uploadedProducts.filter(p => p.category === "snacks");
+
+// Container where products will be added
+const gridContainer = document.querySelectorAll(".category-grid")[0]; // assuming first grid is snacks
+
+uploadedProducts.forEach(p => {
+  const div = document.createElement("div");
+  div.className = "category-card";
+  div.dataset.key = p.name.replace(/\s+/g, '_').toLowerCase(); // unique key
+
+  div.innerHTML = `
+    <img src="${p.image}" alt="${p.name}">
+    <p>${p.name}</p>
+    <div class="product-meta">
+      <p class="product-weight">1 kg</p>
+      <p class="product-price">£${p.price}</p>
+      <button class="add-to-cart" data-name="${p.name}" data-price="${p.price}" data-img="${p.image}">Add to Cart</button>
+    </div>
+  `;
+
+  // Add click behavior for Add to Cart
+  div.querySelector(".add-to-cart").addEventListener("click", e => {
+    e.stopPropagation();
+    let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    const existing = cart.find(item => item.name === p.name);
+    if (existing) existing.quantity += 1;
+    else cart.push({ name: p.name, price: parseFloat(p.price), img: p.image, quantity: 1 });
+    localStorage.setItem("cart", JSON.stringify(cart));
+    const btn = e.target;
+    const orig = btn.innerText;
+    btn.innerText = "Added";
+    setTimeout(()=> btn.innerText = orig, 900);
+  });
+
+  // Click card to go to product details
+  div.addEventListener("click", () => {
+    const productDetails = {
+      key: div.dataset.key,
+      name: p.name,
+      img: p.image,
+      price: `£${p.price}`,
+      weight: "1 kg",
+      ingredients: "Information not available",
+      allergens: "Information not available",
+      nutrition: "Information not available"
+    };
+    localStorage.setItem("productDetails", JSON.stringify(productDetails));
+    window.location.href = "product-details.html";
+  });
+
+  gridContainer.appendChild(div);
+});
+
 
     /****************************************
      * Toast
